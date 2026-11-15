@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.*;
 
 import legends.enums.TileType;
 
@@ -96,11 +97,21 @@ public final class ValorWorld {
     }
 
     public int[] getHeroSpawn(int lane) {
-        return null;
+        if(lane < 0 || lane >= 3)
+                return null;
+
+        int row = tiles.length - 1;
+        int col = lane * 3;
+        return new int[] {row, col};
     }
 
     public int[] getMonsterSpawn(int lane) {
-        return null;
+        if(lane < 0 || lane >= 3)
+            return null;
+
+        int row = 0;
+        int col = lane * 3 + 1;
+        return new int[] {row, col};
     }
 
     public String render() {
@@ -108,19 +119,57 @@ public final class ValorWorld {
     }
 
     public boolean isHeroNexus(int row, int col) {
-        return false;
+        if (row < 0 || row != tiles.length - 1)
+            return false;
+        return col >= 0 && col < tiles[row].length && tiles[row][col] == TileType.NEXUS;
     }
 
     public boolean isMonsterNexus(int row, int col) {
-        return false;
+        if(row != 0 || tiles.length == 0)
+            return false;
+        return col >= 0 && col < tiles[row].length && tiles[row][col] == TileType.NEXUS;
     }
 
     public List<Monster> getAttackableMonsters(Hero hero) {
-        return Collections.emptyList();
+        Position heroPosition = heroes.get(hero);
+        if(heroPosition == null || !hero.isAlive())
+            return Collections.emptyList();
+
+        List<Monster> targets = new ArrayList<>();
+
+        for(Map.Entry<Monster, Position> entry : monsters.entrySet()){
+            Monster monster = entry.getKey();
+            Position monsterPosition = entry.getValue();
+
+            int rowDistance = Math.abs(heroPosition.row - monsterPosition.row);
+            int colDistance = Math.abs(heroPosition.col - monsterPosition.col);
+
+            if (monster.isAlive() && rowDistance <= 1 && colDistance <= 1)
+                targets.add(monster);
+        }
+
+        return targets;
     }
 
     public List<Hero> getAttackableHeroes(Monster monster) {
-        return Collections.emptyList();
+        Position monsterPosition = monsters.get(monster);
+        if(monsterPosition == null || !monster.isAlive())
+            return Collections.emptyList();
+
+        List<Hero> targets = new ArrayList<>();
+
+        for(Map.Entry<Hero, Position> entry : heroes.entrySet()){
+            Hero hero = entry.getKey();
+            Position heroPosition = entry.getValue();
+
+            int rowDistance = Math.abs(heroPosition.row - monsterPosition.row);
+            int colDistance = Math.abs(heroPosition.col - monsterPosition.col);
+
+            if (hero.isAlive() && rowDistance <= 1 && colDistance <= 1)
+                targets.add(hero);
+        }
+
+        return targets;
     }
 
     public boolean advanceMonster(Monster monster) {
