@@ -38,17 +38,18 @@ public final class GameController {
 
     private final GameConfig config;
     private final long seed;
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
     private final boolean colorEnabled;
     private final ExplorationService exploration;
     private GameSession session;
     private GameState state = GameState.SETUP;
     private Hero marketHero;
 
-    public GameController(GameConfig config, long seed, boolean colorEnabled) {
+    public GameController(GameConfig config, long seed, boolean colorEnabled, Scanner scanner) {
         this.config = config;
         this.seed = seed;
         this.colorEnabled = colorEnabled;
+        this.scanner = scanner;
         this.exploration = new ExplorationServiceImpl();
     }
 

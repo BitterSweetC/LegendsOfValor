@@ -8,7 +8,7 @@ This is a Java game that runs in the terminal. You can choose 1 to 3 heroes and 
 
 ### Core & Controller
 
-- `src/main/legends/Main.java`: Reads the command-line options, loads the game data, and starts the game.
+- `src/main/legends/Main.java`: Reads the command-line options, loads the shared game data once, and displays the game selector. Choose `1` for Monsters and Heroes, `2` for Legends of Valor, or `0` to exit. Legends of Valor is not available yet.
 - `src/main/legends/controller/GameController.java`: Reads the player's input and shows the menus. It switches between choosing heroes, exploring, fighting, shopping, and game over.
 
 ### Configuration & Data Loading
