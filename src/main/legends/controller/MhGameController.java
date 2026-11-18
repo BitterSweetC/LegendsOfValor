@@ -6,7 +6,6 @@ import legends.entity.template.HeroTto;
 import legends.enums.GameState;
 import legends.enums.SkillTargetMode;
 import legends.service.BattleService;
-import legends.service.DamageCalculatorService;
 import legends.service.ExplorationService;
 import legends.service.impl.BattleServiceImpl;
 import legends.service.impl.DamageCalculatorServiceImpl;
@@ -28,7 +27,6 @@ import java.util.function.Function;
 
 public final class MhGameController extends GameController{
     private final ExplorationService exploration;
-    private GameSession session;
     private GameState state = GameState.SETUP;
     private Hero marketHero;
 
