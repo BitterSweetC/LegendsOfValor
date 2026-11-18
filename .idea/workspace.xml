@@ -40,63 +40,67 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.000000002509546" />
-      <entry key="S60" value="1.0000690590581358" />
-      <entry key="M2" value="1.018508064227114" />
-      <entry key="M5" value="1.672462468570818" />
-      <entry key="M10" value="3.3035002570191683" />
-      <entry key="M15" value="4.483919558613403" />
-      <entry key="M30" value="6.358156253162293" />
-      <entry key="H1" value="8.510020747052518" />
-      <entry key="H2" value="12.00215623851206" />
-      <entry key="H4" value="16.488055381001757" />
-      <entry key="D1" value="30.07131694184022" />
-      <entry key="W1" value="40.38229701763454" />
+      <entry key="MS100" value="1.0000001565447636" />
+      <entry key="MS500" value="1.1035676288699852" />
+      <entry key="S2" value="2.2924115510318686" />
+      <entry key="S5" value="3.1419709538035114" />
+      <entry key="S10" value="3.534919497925592" />
+      <entry key="S30" value="3.8361868573455484" />
+      <entry key="S60" value="3.916943099555847" />
+      <entry key="M2" value="3.958179912074264" />
+      <entry key="M5" value="3.9832014461004572" />
+      <entry key="M10" value="3.991598183583326" />
+      <entry key="M15" value="3.995394009987935" />
+      <entry key="M30" value="4.1066432355759455" />
+      <entry key="H1" value="5.143765637431116" />
+      <entry key="H2" value="7.705605557794699" />
+      <entry key="H4" value="10.668332327533514" />
+      <entry key="D1" value="14.880589183011358" />
+      <entry key="W1" value="15.833293931580863" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="MS500" value="1.7671239813489026E-203" />
+      <entry key="S2" value="2.060071164837608E-51" />
+      <entry key="S5" value="5.998931447488071E-21" />
+      <entry key="S10" value="1.0662861281745218E-10" />
+      <entry key="S30" value="0.00107817839982269" />
+      <entry key="S60" value="0.08455136186020992" />
+      <entry key="M2" value="1.0387098708510105" />
+      <entry key="M5" value="6.250291240408477" />
+      <entry key="M10" value="12.588581732182472" />
+      <entry key="M15" value="16.21416448845197" />
+      <entry key="M30" value="21.150810223630664" />
+      <entry key="H1" value="24.28761637336065" />
+      <entry key="H2" value="26.064518048761585" />
+      <entry key="H4" value="27.011425299770735" />
+      <entry key="D1" value="27.832253384032008" />
+      <entry key="W1" value="27.97596190113111" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="8.813044406265232E-5" />
-      <entry key="MS500" value="0.15453440761511894" />
-      <entry key="S2" value="0.6269837685858908" />
-      <entry key="S5" value="0.8296645218481976" />
-      <entry key="S10" value="0.9108592217506488" />
-      <entry key="S30" value="0.9693570078226137" />
-      <entry key="S60" value="0.9846282863649326" />
-      <entry key="M2" value="1.0107399833931416" />
-      <entry key="M5" value="1.669045002219755" />
-      <entry key="M10" value="3.301397796833459" />
-      <entry key="M15" value="4.4823264581199815" />
-      <entry key="M30" value="6.357194680645069" />
-      <entry key="H1" value="8.509376420194586" />
-      <entry key="H2" value="12.001661189986828" />
-      <entry key="H4" value="16.487705811951976" />
-      <entry key="D1" value="30.07123028150006" />
-      <entry key="W1" value="40.382283157120646" />
+      <entry key="MS100" value="5.457051619013042E-4" />
+      <entry key="MS500" value="0.3258113983104332" />
+      <entry key="S2" value="1.9783432392279858" />
+      <entry key="S5" value="3.001851478244126" />
+      <entry key="S10" value="3.4621850730877655" />
+      <entry key="S30" value="3.8113212132357637" />
+      <entry key="S60" value="3.9044309531252184" />
+      <entry key="M2" value="3.9519038761964786" />
+      <entry key="M5" value="3.980686223759498" />
+      <entry key="M10" value="3.9903397696111345" />
+      <entry key="M15" value="3.9945548848536334" />
+      <entry key="M30" value="4.1062233537390185" />
+      <entry key="H1" value="5.14355454110223" />
+      <entry key="H2" value="7.70549857759977" />
+      <entry key="H4" value="10.668278002794024" />
+      <entry key="D1" value="14.88057992991708" />
+      <entry key="W1" value="15.833292603261054" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -117,11 +121,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "test",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm"
   }
