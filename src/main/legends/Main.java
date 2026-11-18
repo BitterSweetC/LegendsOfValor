@@ -56,17 +56,22 @@ public class Main {
             }
 
             String choice = input.nextLine().trim();
+            // GameController controller;
+
             if(choice.equals("0"))
                 return;
             if(choice.equals("1")) {
+                // controller = new MonstersAndHeroesController(config, seed, colorEnabled, input);
                 new GameController(config, seed, colorEnabled, input).run();
             }
             else if(choice.equals("2")) {
-                return; // replace with ValorController
+                // controller = new ValorController(config, seed, colorEnabled, input);
             }
             else {
                 System.out.println("Enter 1, 2, or 0.");
             }
+
+            // controller.run();
         }
     }
 }
