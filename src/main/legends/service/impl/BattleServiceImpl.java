@@ -146,11 +146,11 @@ public final class BattleServiceImpl implements BattleService {
     public List<String> potion(Battle battle, Hero hero, ItemInstance item) {
         String kind = item.getPotion().getEffectType();
         boolean resource = kind.equals("HEALTH") || kind.equals("MANA");
-        double before = kind.equals("HEALTH") ? hero.getHp() : kind.equals("MANA") ? hero.getMp() : hero.getStat(kind);
+        double before = kind.equals("HEALTH") ? hero.getHp() : kind.equals("MANA") ? hero.getMp() : hero.getStatus(kind);
         long beforeHp = hero.getHp(), beforeMp = hero.getMp();
         hero.drink(item);
         battle.getStatistics().potion(hero, beforeHp, beforeMp);
-        double after = kind.equals("HEALTH") ? hero.getHp() : kind.equals("MANA") ? hero.getMp() : hero.getStat(kind);
+        double after = kind.equals("HEALTH") ? hero.getHp() : kind.equals("MANA") ? hero.getMp() : hero.getStatus(kind);
         hero.commit(null);
         battle.acted();
         String attribute = kind.equals("HEALTH") ? "HP" : kind.equals("MANA") ? "MP" : kind;

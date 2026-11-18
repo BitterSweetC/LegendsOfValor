@@ -472,7 +472,7 @@ public final class ValorWorld {
             return;
         }
         heroes.put(hero, position);
-        String stat = bonusStat(tiles[position.getRow()][position.getCol()]);
+        String stat = bonusStatus(tiles[position.getRow()][position.getCol()]);
         if(stat != null)
             hero.setTerrainState(stat, TERRAIN_BONUS);
     }
@@ -509,7 +509,7 @@ public final class ValorWorld {
 
     private static final double TERRAIN_BONUS = 0.10;
 
-    private static String bonusStat(TileType type) {
+    private static String bonusStatus(TileType type) {
         switch(type) {
             case BUSH:   return "DEX";
             case CAVE:   return "AGI";
