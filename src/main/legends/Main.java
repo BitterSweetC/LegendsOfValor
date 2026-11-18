@@ -2,9 +2,12 @@ package legends;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.Scanner;
 
 import legends.config.ConfigLoader;
 import legends.config.GameConfig;
+import legends.controller.GameController;
+import legends.controller.LvGameController;
 import legends.controller.MhGameController;
 
 public class Main {
@@ -24,7 +27,7 @@ public class Main {
                     throw new IllegalArgumentException("Usage: Main [--data directory] [--seed integer] [--no-color]");
             }
             GameConfig config = new ConfigLoader().load(data);
-            new MhGameController(config, seed, colorEnabled).run();
+            runSelector(config, seed, colorEnabled, new Scanner(System.in));
         }
         catch(IOException e) {
             System.err.println("Cannot read game data: " + e.getMessage());
@@ -37,6 +40,41 @@ public class Main {
         catch(UncheckedIOException e) {
             System.err.println("Console I/O failed: " + e.getMessage());
             System.exit(2);
+        }
+    }
+
+    private static void runSelector(GameConfig config, long seed, boolean colorEnabled, Scanner input) {
+        while(true) {
+            System.out.println("\n=== Select a Game to Play ===");
+            System.out.println("1. Monsters and Heroes");
+            System.out.println("2. Legends of Valor");
+            System.out.println("0. Exit");
+            System.out.println("\033[36mSelect a game > \033[0m");
+
+            if(!input.hasNextLine()) {
+                if(input.ioException() != null)
+                    throw new UncheckedIOException(input.ioException());
+                return;
+            }
+
+            String choice = input.nextLine().trim();
+            GameController controller = null;
+
+            if(choice.equals("0"))
+                return;
+            if(choice.equals("1")) {
+                controller = new MhGameController(config, seed, colorEnabled, input);
+            }
+            else if(choice.equals("2")) {
+                controller = new LvGameController(config, seed, colorEnabled, input);
+            }
+            else {
+                System.out.println("Enter 1, 2, or 0.");
+            }
+
+            if (controller != null) {
+                controller.run();
+            }
         }
     }
 }
