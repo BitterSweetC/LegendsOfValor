@@ -4,34 +4,61 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9597dbf4-25ed-40a2-b99e-4c17867b1722" name="Changes" comment="" />
+    <list default="true" id="9597dbf4-25ed-40a2-b99e-4c17867b1722" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/ValorWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/legends/factory/VWorldGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/controller/MhGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/entity/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/MhGameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/entity/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/MhWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/enums/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/enums/TileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/factory/EncounterGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/factory/MhEncounterGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/factory/WorldGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/factory/MhWorldGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/service/BattleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/service/BattleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/service/ExplorationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/service/ExplorationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/service/impl/ExplorationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/service/impl/ExplorationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/service/test.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000001565447636" />
-      <entry key="MS500" value="1.1035676288699852" />
-      <entry key="S2" value="2.2924115510318686" />
-      <entry key="S5" value="3.1419709538035114" />
-      <entry key="S10" value="3.534919497925592" />
-      <entry key="S30" value="3.8361868573455484" />
-      <entry key="S60" value="3.916943099555847" />
-      <entry key="M2" value="3.958179912074264" />
-      <entry key="M5" value="3.9832014461004572" />
-      <entry key="M10" value="3.991598183583326" />
-      <entry key="M15" value="3.995394009987935" />
-      <entry key="M30" value="4.1066432355759455" />
-      <entry key="H1" value="5.143765637431116" />
-      <entry key="H2" value="7.705605557794699" />
-      <entry key="H4" value="10.668332327533514" />
-      <entry key="D1" value="14.880589183011358" />
-      <entry key="W1" value="15.833293931580863" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.000000002509546" />
+      <entry key="S60" value="1.0000690590581358" />
+      <entry key="M2" value="1.018508064227114" />
+      <entry key="M5" value="1.672462468570818" />
+      <entry key="M10" value="3.3035002570191683" />
+      <entry key="M15" value="4.483919558613403" />
+      <entry key="M30" value="6.358156253162293" />
+      <entry key="H1" value="8.510020747052518" />
+      <entry key="H2" value="12.00215623851206" />
+      <entry key="H4" value="16.488055381001757" />
+      <entry key="D1" value="30.07131694184022" />
+      <entry key="W1" value="40.38229701763454" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -53,29 +80,32 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="5.457051619013042E-4" />
-      <entry key="MS500" value="0.3258113983104332" />
-      <entry key="S2" value="1.9783432392279858" />
-      <entry key="S5" value="3.001851478244126" />
-      <entry key="S10" value="3.4621850730877655" />
-      <entry key="S30" value="3.8113212132357637" />
-      <entry key="S60" value="3.9044309531252184" />
-      <entry key="M2" value="3.9519038761964786" />
-      <entry key="M5" value="3.980686223759498" />
-      <entry key="M10" value="3.9903397696111345" />
-      <entry key="M15" value="3.9945548848536334" />
-      <entry key="M30" value="4.1062233537390185" />
-      <entry key="H1" value="5.14355454110223" />
-      <entry key="H2" value="7.70549857759977" />
-      <entry key="H4" value="10.668278002794024" />
-      <entry key="D1" value="14.88057992991708" />
-      <entry key="W1" value="15.833292603261054" />
+      <entry key="MS100" value="8.813044406265232E-5" />
+      <entry key="MS500" value="0.15453440761511894" />
+      <entry key="S2" value="0.6269837685858908" />
+      <entry key="S5" value="0.8296645218481976" />
+      <entry key="S10" value="0.9108592217506488" />
+      <entry key="S30" value="0.9693570078226137" />
+      <entry key="S60" value="0.9846282863649326" />
+      <entry key="M2" value="1.0107399833931416" />
+      <entry key="M5" value="1.669045002219755" />
+      <entry key="M10" value="3.301397796833459" />
+      <entry key="M15" value="4.4823264581199815" />
+      <entry key="M30" value="6.357194680645069" />
+      <entry key="H1" value="8.509376420194586" />
+      <entry key="H2" value="12.001661189986828" />
+      <entry key="H4" value="16.487705811951976" />
+      <entry key="D1" value="30.07123028150006" />
+      <entry key="W1" value="40.382283157120646" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="3Lk65eaTNxiJ9VWNvdEZaJeueKI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -87,7 +117,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "test",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -116,5 +146,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
