@@ -13,7 +13,7 @@ public class VWorldGenerator {
         TileType[][] tiles = new TileType[8][8];
         List<TileType> terrain = new ArrayList<>();
 
-        // 准备路线内部的 36 个地形
+        // 地形
         for (int i = 0; i < 36; i++) {
             if (i < 4) {
                 terrain.add(TileType.OBSTACLE);

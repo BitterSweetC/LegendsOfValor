@@ -17,6 +17,8 @@ public final class Hero extends Combatant {
     private final List<Skill> slots = new ArrayList<>();
     private final Map<String, Long> availableAt = new HashMap<>();
     private long opportunities;
+    private String terrainState;
+    private double terrainBonus;
 
     public Hero(HeroTto definition, GameConfig config) {
         super(definition.getName(), 1, definition.getHp());
@@ -50,7 +52,8 @@ public final class Hero extends Combatant {
     }
 
     public double getStat(String name) {
-        return attributes.get(name) * (1 + getStrongest("POTION_" + name));
+        double terrain = name.equals(terrainState) ? terrainBonus : 0;
+        return attributes.get(name) * (1 + getStrongest("POTION_" + name)) * (1 + terrain);
     }
 
     public double getDefense() {
@@ -215,4 +218,16 @@ public final class Hero extends Combatant {
     public Equipment getEquipment() {
         return equipment;
     }
+
+    public void setTerrainState(String status, double bonus){
+        terrainState = status;
+        terrainBonus = bonus;
+    }
+
+    public void clearBonus(){
+        terrainState = null;
+        terrainBonus = 0;
+    }
+
+
 }
