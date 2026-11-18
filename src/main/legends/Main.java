@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import legends.config.ConfigLoader;
 import legends.config.GameConfig;
+import legends.controller.GameController;
+import legends.controller.LvGameController;
 import legends.controller.MhGameController;
 
 public class Main {
@@ -56,22 +58,23 @@ public class Main {
             }
 
             String choice = input.nextLine().trim();
-            // GameController controller;
+            GameController controller = null;
 
             if(choice.equals("0"))
                 return;
             if(choice.equals("1")) {
-                // controller = new MonstersAndHeroesController(config, seed, colorEnabled, input);
-                new GameController(config, seed, colorEnabled, input).run();
+                controller = new MhGameController(config, seed, colorEnabled, input);
             }
             else if(choice.equals("2")) {
-                // controller = new ValorController(config, seed, colorEnabled, input);
+                controller = new LvGameController(config, seed, colorEnabled, input);
             }
             else {
                 System.out.println("Enter 1, 2, or 0.");
             }
 
-            // controller.run();
+            if (controller != null) {
+                controller.run();
+            }
         }
     }
 }

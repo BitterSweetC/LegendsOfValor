@@ -1,0 +1,21 @@
+Seed: 315155053782916
+Session statistics
+Steps: 1 | Encounters: 1
+Battles: 1 won, 0 lost, 0 unfinished
+Actions: Attack=1  Skill=0  Spell=0  Potion=0  Equipment=0  
+Trading: Bought 0 / 0 gold | Sold 0 / 0 gold | Repairs 0 / 0 gold
+Hero combat (potion recovery excludes round recovery, leveling and revival)
+Hero                     Damage dealt Damage taken  Potion HP  Potion MP
+Gaerdal_Ironhand                  171            0          0          0
+Sehanine_Monnbow                    0            0          0          0
+Hero growth (reward gold excludes starting gold and sales)
+Gaerdal_Ironhand | Level: 2 (+1) | EXP: 13 | EXP gained: 6 | Reward gold: 80 | Gold held: 1434
+Sehanine_Monnbow | Level: 2 (+1) | EXP: 14 | EXP gained: 6 | Reward gold: 80 | Gold held: 2580
+
+Action history
+Move 1 | Position (8, 4)
+Battle 1 | Started | [Goblin Raider Lv2 HP 171/171]
+Battle 1 | Round 1 | Attack | Hero attack: Gaerdal_Ironhand -> Goblin Raider: 171 damage | HP 171 -> 0/171; defeated
+Battle 1 | Victory
+Reward | Gaerdal_Ironhand | Gold +80 | EXP +6
+Reward | Sehanine_Monnbow | Gold +80 | EXP +6

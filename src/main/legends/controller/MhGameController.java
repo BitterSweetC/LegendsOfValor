@@ -1,60 +1,45 @@
 package legends.controller;
 
-import java.io.UncheckedIOException;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.function.Function;
-
 import legends.config.GameConfig;
-import legends.entity.Battle;
-import legends.entity.Combatant;
-import legends.entity.GameSession;
-import legends.entity.Hero;
-import legends.entity.ItemInstance;
-import legends.entity.Market;
-import legends.entity.Monster;
-import legends.entity.Skill;
-import legends.entity.StatusEffect;
+import legends.entity.*;
 import legends.entity.template.HeroTto;
 import legends.enums.GameState;
 import legends.enums.SkillTargetMode;
 import legends.service.BattleService;
-import legends.service.ExplorationService;
 import legends.service.DamageCalculatorService;
+import legends.service.ExplorationService;
 import legends.service.impl.BattleServiceImpl;
-import legends.service.impl.ExplorationServiceImpl;
 import legends.service.impl.DamageCalculatorServiceImpl;
+import legends.service.impl.ExplorationServiceImpl;
+
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+import java.util.function.Function;
 
 /**
- * Main game loop. Routes between setup, exploration, battle, and market states.
+ * Controller for Legends: Monsters and Heroes.
+ * Handles hero movement, exploration, battles, and markets.
  */
-public final class GameController {
-    private static final String RESET = "\u001B[0m";
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String YELLOW = "\u001B[33m";
-    private static final String CYAN = "\u001B[36m";
 
-    private final GameConfig config;
-    private final long seed;
-    private final Scanner scanner;
-    private final boolean colorEnabled;
+public final class MhGameController extends GameController{
     private final ExplorationService exploration;
-    private GameSession session;
+    private MhGameSession session;
     private GameState state = GameState.SETUP;
     private Hero marketHero;
 
-    public GameController(GameConfig config, long seed, boolean colorEnabled, Scanner scanner) {
-        this.config = config;
-        this.seed = seed;
-        this.colorEnabled = colorEnabled;
-        this.scanner = scanner;
+    public MhGameController(GameConfig config, long seed, boolean colorEnabled, Scanner input) {
+        super(config, seed, colorEnabled, input);
         this.exploration = new ExplorationServiceImpl();
     }
 
+    @Override
     public void run() {
-        System.out.println("Legends: Monsters and Heroes | seed " + seed);
+        System.out.println("Legends: Monsters and Heroes | seed " + getSeed());
         help();
         try {
             while(state != GameState.EXIT) {
@@ -76,11 +61,11 @@ public final class GameController {
                             String choice;
                             while(true) {
                                 System.out.print(colored("Game over. R restart, X exit > ", CYAN));
-                                choice = scanner.nextLine().trim().toUpperCase();
+                                choice = getInput().nextLine().trim().toUpperCase();
                                 if(!handleCommand(choice))
                                     break;
                             }
-                            if(choice.equals("R") || choice.equals("r"))
+                            if(choice.equals("R"))
                                 state = GameState.SETUP;
                             else
                                 state = GameState.EXIT;
@@ -95,8 +80,8 @@ public final class GameController {
             }
         }
         catch(NoSuchElementException e) {
-            if(scanner.ioException() != null)
-                throw new UncheckedIOException(scanner.ioException());
+            if(getInput().ioException() != null)
+                throw new UncheckedIOException(getInput().ioException());
         }
         finishSession();
         System.out.println("Goodbye.");
@@ -104,19 +89,19 @@ public final class GameController {
 
     private void setup() {
         finishSession();
-        session = new GameSession(config, seed);
+        session = new MhGameSession(getConfig(), getSeed());
         int heroCount = number("Number of heroes", 1, 3);
-        List<HeroTto> available = new ArrayList<>(config.getHeroTtos());
+        List<HeroTto> available = new ArrayList<>(getConfig().getHeroTtos());
         List<Hero> heroes = new ArrayList<>();
-        
+
         while(heroes.size() < heroCount) {
             HeroTto definition = chooseHero("Select hero " + (heroes.size() + 1), available);
             if(definition != null) {
-                heroes.add(new Hero(definition, config));
+                heroes.add(new Hero(definition, getConfig()));
                 available.remove(definition);
             }
         }
-        
+
         session.start(heroes);
         info();
         System.out.println(session.getWorld().render(session.getParty()));
@@ -135,7 +120,7 @@ public final class GameController {
         while(true) {
             System.out.print(colored(session.getWorld().getMarket(session.getParty()) != null
                     ? "Explore (M to enter market) > " : "Explore > ", CYAN));
-            command = scanner.nextLine().trim().toUpperCase();
+            command = getInput().nextLine().trim().toUpperCase();
             if(!handleCommand(command))
                 break;
         }
@@ -178,7 +163,7 @@ public final class GameController {
         }
 
         if(!session.getWorld().move(session.getParty(), rowChange, colChange)) {
-                System.out.println(colored("Movement blocked by the map edge or a blocked (#) tile. Choose another direction.", RED));
+            System.out.println(colored("Movement blocked by the map edge or a blocked (#) tile. Choose another direction.", RED));
             return;
         }
 
@@ -186,14 +171,14 @@ public final class GameController {
 
         System.out.println(session.getWorld().render(session.getParty()));
         String event = exploration.entered(session);
-        
+
         if(event.startsWith("Treasure:"))
             System.out.println(colored(event, YELLOW));
         else if(event.equals("Monsters appeared!"))
             System.out.println(colored(event, RED));
         else if(!event.isEmpty())
             System.out.println(event);
-        
+
         if(session.getBattle() != null) {
             state = GameState.BATTLE;
             info();
@@ -202,25 +187,25 @@ public final class GameController {
 
     private List<ItemInstance> items(Hero hero, String category) {
         List<ItemInstance> list = new ArrayList<>();
-        
+
         for(ItemInstance item : hero.getInventory().getItems())
             if(category == null || item.getCategory().equals(category))
                 list.add(item);
-        
+
         return list;
     }
 
     private void inventory() {
         Hero hero = hero();
-        
+
         if(hero == null)
             return;
-        
+
         printInventory(hero);
         String choice;
         while(true) {
             System.out.print(colored("U use potion, 0 return > ", CYAN));
-            choice = scanner.nextLine().trim().toUpperCase();
+            choice = getInput().nextLine().trim().toUpperCase();
             if(!handleCommand(choice))
                 break;
         }
@@ -231,7 +216,7 @@ public final class GameController {
                 hero.drink(item);
                 session.getStatistics().explorationPotion(hero, item, beforeHp, beforeMp);
                 System.out.println(hero.getName() + " used " + item.getName() + ": " + item.getDetails()
-                    + " | HP " + beforeHp + " -> " + hero.getHp() + "/" + hero.getMaxHp()
+                        + " | HP " + beforeHp + " -> " + hero.getHp() + "/" + hero.getMaxHp()
                         + " | MP " + beforeMp + " -> " + hero.getMp() + "/" + hero.getMaxMp());
             }
         }
@@ -251,7 +236,7 @@ public final class GameController {
         for(ItemInstance item : hero.getInventory().getItems())
             if(item.isDurable())
                 list.add(item);
-        
+
         System.out.println(hero.getEquipment());
 
         ItemInstance item = choose("Equipment", list);
@@ -260,14 +245,14 @@ public final class GameController {
         String mode;
         while(true) {
             System.out.print(colored("SINGLE main hand / BOTH both hands / OFF off hand; U unequip, 0 cancel > ", CYAN));
-            mode = scanner.nextLine().trim().toUpperCase();
+            mode = getInput().nextLine().trim().toUpperCase();
             if(!handleCommand(mode))
                 break;
         }
-        
+
         if(mode.equals("0"))
             return;
-        
+
         if(mode.equals("U")) {
             if(!hero.getEquipment().isEquipped(item))
                 throw new IllegalArgumentException("Item is not equipped");
@@ -290,14 +275,15 @@ public final class GameController {
         System.out.println("Unlocked skills:");
         Skill skill = choose("Unlocked skill to equip", hero.getUnlockedSkills(), option -> skillDescription(option)
                 + (hero.getSkillSlots().contains(option)
-                        ? " | equipped in slot " + (hero.getSkillSlots().indexOf(option) + 1) : " | not equipped"));
+                ? " | equipped in slot " + (hero.getSkillSlots().indexOf(option) + 1) : " | not equipped"));
+
         if(skill == null)
             return;
         if(hero.getSkillSlots().contains(skill)) {
             System.out.println("Already equipped in slot " + (hero.getSkillSlots().indexOf(skill) + 1) + ". No changes made.");
             return;
         }
-        
+
         int slot = number("Slot (0 cancel)", 0, Math.min(3, hero.getSkillSlots().size() + 1));
         if(slot != 0) {
             hero.slot(slot - 1, skill);
@@ -321,7 +307,7 @@ public final class GameController {
     private void battle() {
         Battle battle = session.getBattle();
         BattleService service = new BattleServiceImpl(session.getRandom());
-        
+
         // check if battle just ended
         if(battle.isOver()) {
             if(service.settle(battle)) {
@@ -337,14 +323,14 @@ public final class GameController {
             session.setBattle(null);
             return;
         }
-        
+
         Hero hero = battle.getCurrentHero();
         if(hero == null) {
             System.out.println(colored("\n=== Enemy turn ===", RED));
             logs(service.finishRound(battle));
             return;
         }
-        
+
         System.out.println(colored("\n=== Round " + battle.getRound() + " ===", CYAN));
         System.out.println("Active hero: " + hero.getName() + " (Lv" + hero.getLevel() + " " + hero.getHeroClass() + ")");
         System.out.println("HP: " + hero.getHp() + "/" + hero.getMaxHp() + " | MP: " + hero.getMp() + "/" + hero.getMaxMp());
@@ -355,11 +341,11 @@ public final class GameController {
         String command;
         while(true) {
             System.out.print(colored("1 attack, 2 skill, 3 spell, 4 potion, 5 equipment > ", CYAN));
-            command = scanner.nextLine().trim();
+            command = getInput().nextLine().trim();
             if(!handleCommand(command))
                 break;
         }
-        
+
         switch(command) {
             case "1" : {
                 Monster monster = choose("Target", battle.getLiving());
@@ -374,7 +360,7 @@ public final class GameController {
                 ItemInstance item = choose("Market spell", items(hero, "spells"));
                 if(item == null)
                     break;
-                
+
                 Monster monster = choose("Target", battle.getLiving());
                 if(monster != null)
                     logs(service.cast(battle, hero, item, monster));
@@ -400,7 +386,7 @@ public final class GameController {
             return;
         SkillTargetMode mode = skill.getTargetMode();
         List<Combatant> targets = new ArrayList<>();
-        
+
         if(mode == SkillTargetMode.ENEMY) {
             Monster target = choose("Target", battle.getLiving());
             if(target == null)
@@ -412,18 +398,18 @@ public final class GameController {
                 return;
             targets.add(target);
         }
-        
+
         logs(service.skill(battle, hero, skill, targets));
     }
 
     private void market() {
         Market market = session.getWorld().getMarket(session.getParty());
         System.out.println("Market | " + marketHero.getName() + " | Gold " + marketHero.getGold());
-        
+
         String command;
         while(true) {
             System.out.print(colored("1 buy, 2 sell, 3 repair, 4 select trading hero, 5 inventory, 0 leave > ", CYAN));
-            command = scanner.nextLine().trim();
+            command = getInput().nextLine().trim();
             if(!handleCommand(command))
                 break;
         }
@@ -497,16 +483,12 @@ public final class GameController {
             return;
         printSummary();
         try {
-            System.out.println("Statistics and action history saved: " + session.getStatistics().save(Paths.get("logs"), seed));
+            System.out.println("Statistics and action history saved: " + session.getStatistics().save(Paths.get("logs"), getSeed()));
         }
         catch(IOException | SecurityException e) {
             System.err.println("Cannot save statistics: " + e.getMessage() + ". Full report follows; copy it to keep a record.");
-            System.out.print(session.getStatistics().report(seed));
+            System.out.print(session.getStatistics().report(getSeed()));
         }
-    }
-
-    private String colored(String message, String color) {
-        return colorEnabled ? color + message + RESET : message;
     }
 
     private boolean handleCommand(String value) {
@@ -514,7 +496,7 @@ public final class GameController {
         if(command.equals("Q")) {
             while(true) {
                 System.out.print(colored("Quit? Character progress is not saved; statistics/history will be exported. Y/Q yes, N/0 cancel > ", CYAN));
-                String confirm = scanner.nextLine().trim().toUpperCase();
+                String confirm = getInput().nextLine().trim().toUpperCase();
                 if(confirm.equals("Y") || confirm.equals("Q")) {
                     finishSession();
                     System.out.println("Goodbye.");
@@ -635,13 +617,13 @@ public final class GameController {
         }
         return label + Math.round(100 * effect.getValue()) + "% | "
                 + (effect.getRemaining() == 0 ? "until battle ends"
-                        : effect.getRemaining() + " round(s) remaining, including this round");
+                : effect.getRemaining() + " round(s) remaining, including this round");
     }
 
     private int number(String prompt, int min, int max) {
         while(true) {
             System.out.print(colored(prompt + " > ", CYAN));
-            String value = scanner.nextLine().trim();
+            String value = getInput().nextLine().trim();
             if(handleCommand(value))
                 continue;
             try {
@@ -650,6 +632,7 @@ public final class GameController {
                     return selection;
             }
             catch(NumberFormatException ignored) {
+                printError("Invalid input. Please enter a number.");
             }
             System.out.println(colored("Enter a number from " + min + " to " + max + ".", RED));
         }
