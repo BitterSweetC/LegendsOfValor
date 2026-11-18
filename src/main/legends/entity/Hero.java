@@ -51,7 +51,7 @@ public final class Hero extends Combatant {
         return experience;
     }
 
-    public double getStatus(String name) {
+    public double getStat(String name) {
         double terrain = name.equals(terrainState) ? terrainBonus : 0;
         return attributes.get(name) * (1 + getStrongest("POTION_" + name)) * (1 + terrain);
     }
@@ -59,7 +59,7 @@ public final class Hero extends Combatant {
     public double getDefense() {
         ItemInstance armor = equipment.getArmor();
         double armorDefense = armor == null ? 0 : armor.getDefense();
-        double totalDefense = getStatus("DEF") + armorDefense;
+        double totalDefense = getStat("DEF") + armorDefense;
         double defenseBuff = 1 + getStrongest("DEFENSE");
         return totalDefense * defenseBuff;
     }

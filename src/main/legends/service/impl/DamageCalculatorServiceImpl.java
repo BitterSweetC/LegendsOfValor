@@ -10,17 +10,17 @@ import legends.service.DamageCalculatorService;
 public final class DamageCalculatorServiceImpl implements DamageCalculatorService {
     @Override
     public double getPhysical(Hero hero) {
-        return (hero.getStatus("STR") + hero.getEquipment().getWeapon()) * 0.5;
+        return (hero.getStat("STR") + hero.getEquipment().getWeapon()) * 0.5;
     }
 
     @Override
     public double getMagic(Hero hero) {
-        return (hero.getStatus("DEX") + hero.getEquipment().getMagic()) * 0.75;
+        return (hero.getStat("DEX") + hero.getEquipment().getMagic()) * 0.75;
     }
 
     @Override
     public double getSpell(Hero hero, ItemInstance spell) {
-        return spell.getDamage() * (1 + hero.getStatus("DEX") / 3000.0);
+        return spell.getDamage() * (1 + hero.getStat("DEX") / 3000.0);
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class DamageCalculatorServiceImpl implements DamageCalculatorServic
         double dodgeChance;
         if(target instanceof Hero) {
             Hero hero = (Hero) target;
-            double agility = hero.getStatus("AGI");
+            double agility = hero.getStat("AGI");
             // Approach 45% gradually so additional agility keeps improving dodge.
             dodgeChance = 0.08 + 0.37 * agility / (agility + 1000.0);
         }else {
@@ -53,7 +53,7 @@ public final class DamageCalculatorServiceImpl implements DamageCalculatorServic
 
     @Override
     public double getCritical(Hero hero) {
-        double luckBonus = hero.getStatus("LUCK") / 1000.0;
+        double luckBonus = hero.getStat("LUCK") / 1000.0;
         double criticalChance = 0.03 + luckBonus;
         return Math.min(0.35, criticalChance);
     }
