@@ -18,6 +18,9 @@ public final class Hero extends Combatant {
     private final Map<String, Long> availableAt = new HashMap<>();
     private long opportunities;
 
+    private String terrainStat; // e.g. "DEX", "AGI", "STR" or null remove if necessary just here to work with current LvGameSession
+    private double terrainBonus;
+
     public Hero(HeroTto definition, GameConfig config) {
         super(definition.getName(), 1, definition.getHp());
         template = definition;
@@ -31,6 +34,28 @@ public final class Hero extends Combatant {
         for(Skill skill : getUnlockedSkills())
             if(skill.getUnlockLevel() == 1)
                 slots.add(skill);
+    }
+
+    public void setTerrainBonus(String stat, double bonus) {
+        terrainStat = stat;
+        terrainBonus = bonus;
+    }
+
+    public void clearTerrainBonus() {
+        terrainStat = null;
+        terrainBonus = 0;
+    }
+
+    // Valor HP Recovery
+    public long getHpRecovery(double fraction) { return (long) Math.ceil(maxHp * fraction); }
+    public long getMpRecovery(double fraction) { return (long) Math.ceil(maxMp * fraction); }
+
+    // Valor Respawn
+    public void respawn() {
+        hp = maxHp;
+        mp = maxMp;
+        clearEffects();
+        clearTerrainBonus();
     }
 
     public long getMp() {
@@ -50,7 +75,8 @@ public final class Hero extends Combatant {
     }
 
     public double getStat(String name) {
-        return attributes.get(name) * (1 + getStrongest("POTION_" + name));
+        double terrain = name.equals(terrainStat) ? terrainBonus : 0; // added terrain bonus here
+        return attributes.get(name) * (1 + getStrongest("POTION_" + name)) * (1 + terrain);
     }
 
     public double getDefense() {
@@ -83,6 +109,10 @@ public final class Hero extends Combatant {
     }
 
     public void drink(ItemInstance item) {
+        drink(item, 0);                    // 0 = until battle ends (original behavior)
+    }
+
+    public void drink(ItemInstance item, int rounds) {
         if(item.getLevel() > level)
             throw new IllegalArgumentException(item.getName() + " requires hero level " + item.getLevel() + "; current level: " + level + ".");
         
@@ -93,7 +123,7 @@ public final class Hero extends Combatant {
             amount = Math.min(item.getPotion().getMaxRatio(), amount);
             if(amount <= getStrongest("POTION_" + kind))
                 throw new IllegalArgumentException("An equal or stronger " + kind + " potion boost is already active. Potion boosts do not stack.");
-            effect("potion_" + kind, "POTION_" + kind, amount, 0);
+            effect("potion_" + kind, "POTION_" + kind, amount, rounds);
         }else if(kind.equals("HEALTH"))
             hp += (long) Math.ceil(amount);
         else

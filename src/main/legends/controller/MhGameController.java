@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.function.Function;
 
 /**
  * Controller for Legends: Monsters and Heroes.
@@ -90,7 +89,7 @@ public final class MhGameController extends GameController{
     private void setup() {
         finishSession();
         session = new MhGameSession(getConfig(), getSeed());
-        int heroCount = number("Number of heroes", 1, 3);
+        int heroCount = readNumber("Number of heroes", 1, 3);
         List<HeroTto> available = new ArrayList<>(getConfig().getHeroTtos());
         List<Hero> heroes = new ArrayList<>();
 
@@ -284,7 +283,7 @@ public final class MhGameController extends GameController{
             return;
         }
 
-        int slot = number("Slot (0 cancel)", 0, Math.min(3, hero.getSkillSlots().size() + 1));
+        int slot = readNumber("Slot (0 cancel)", 0, Math.min(3, hero.getSkillSlots().size() + 1));
         if(slot != 0) {
             hero.slot(slot - 1, skill);
             session.getStatistics().record("Explore | " + hero.getName() + " | Slot " + slot + " | " + skill.getName());
@@ -491,7 +490,8 @@ public final class MhGameController extends GameController{
         }
     }
 
-    private boolean handleCommand(String value) {
+    @Override
+    protected boolean handleCommand(String value) {
         String command = value.toUpperCase();
         if(command.equals("Q")) {
             while(true) {
@@ -620,24 +620,6 @@ public final class MhGameController extends GameController{
                 : effect.getRemaining() + " round(s) remaining, including this round");
     }
 
-    private int number(String prompt, int min, int max) {
-        while(true) {
-            System.out.print(colored(prompt + " > ", CYAN));
-            String value = getInput().nextLine().trim();
-            if(handleCommand(value))
-                continue;
-            try {
-                int selection = Integer.parseInt(value);
-                if(selection >= min && selection <= max)
-                    return selection;
-            }
-            catch(NumberFormatException ignored) {
-                printError("Invalid input. Please enter a number.");
-            }
-            System.out.println(colored("Enter a number from " + min + " to " + max + ".", RED));
-        }
-    }
-
     private ItemInstance offer(Hero hero, List<ItemInstance> stock) {
         if(stock.isEmpty()) {
             System.out.println("This market is out of stock. Markets restock after every five victories.");
@@ -656,38 +638,12 @@ public final class MhGameController extends GameController{
                     + power);
         }
 
-        int selection = number("Buy (0 cancel)", 0, stock.size());
+        int selection = readNumber("Buy (0 cancel)", 0, stock.size());
         return selection == 0 ? null : stock.get(selection - 1);
-    }
-
-    private <T> T choose(String prompt, List<T> options) {
-        return choose(prompt, options, Object::toString);
-    }
-
-    private HeroTto chooseHero(String prompt, List<HeroTto> heroes) {
-        List<String> classes = new ArrayList<>();
-        for(HeroTto hero : heroes)
-            if(!classes.contains(hero.getHeroClass()))
-                classes.add(hero.getHeroClass());
-        String heroClass = choose("Select class", classes);
-        if(heroClass == null)
-            return null;
-        List<HeroTto> candidates = new ArrayList<>();
-        for(HeroTto hero : heroes)
-            if(hero.getHeroClass().equals(heroClass))
-                candidates.add(hero);
-        return choose(prompt, candidates, this::heroDescription);
     }
 
     private Skill chooseSkill(String prompt, List<Skill> skills) {
         return choose(prompt, skills, this::skillDescription);
-    }
-
-    private String heroDescription(HeroTto hero) {
-        return hero.getName() + " [" + hero.getHeroClass() + ", HP " + hero.getHp() + ", MP "
-                + hero.getMp() + ", STR " + hero.getStrength() + ", DEX " + hero.getDexterity()
-                + ", AGI " + hero.getAgility() + ", Gold " + hero.getInitialGold()
-                + ", EXP " + hero.getInitialExp() + "]";
     }
 
     private String skillDescription(Skill skill) {
@@ -711,16 +667,5 @@ public final class MhGameController extends GameController{
         return skill.getName() + " [requires Lv" + skill.getUnlockLevel() + ", MP cost " + skill.getMpCost()
                 + ", cooldown: " + skill.getCooldown() + " other actions by this hero; " + effect
                 + "; target: " + skill.getTargetMode().name().toLowerCase().replace('_', ' ') + "]";
-    }
-
-    private <T> T choose(String prompt, List<T> options, Function<T, String> description) {
-        if(options.isEmpty()) {
-            System.out.println(prompt + ": nothing available to select. Returning to the previous menu.");
-            return null;
-        }
-        for(int i = 0; i < options.size(); i++)
-            System.out.println((i + 1) + ". " + description.apply(options.get(i)));
-        int selection = number(prompt + " (0 cancel)", 0, options.size());
-        return selection == 0 ? null : options.get(selection - 1);
     }
 }
