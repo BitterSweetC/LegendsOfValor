@@ -5,9 +5,9 @@ import java.util.*;
 
 import legends.config.GameConfig;
 
-public class ValorController extends GameController {
+public class LvGameController extends GameController {
 
-    public ValorController(GameConfig config, long seed, boolean colorEnabled, Scanner input) {
+    public LvGameController(GameConfig config, long seed, boolean colorEnabled, Scanner input) {
         super(config, seed, colorEnabled, input);
     }
 

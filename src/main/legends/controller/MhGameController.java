@@ -26,13 +26,13 @@ import java.util.function.Function;
  * Handles hero movement, exploration, battles, and markets.
  */
 
-public final class MonstersandHeroesController extends GameController{
+public final class MhGameController extends GameController{
     private final ExplorationService exploration;
     private GameSession session;
     private GameState state = GameState.SETUP;
     private Hero marketHero;
 
-    public MonstersandHeroesController(GameConfig config, long seed, boolean colorEnabled, Scanner input) {
+    public MhGameController(GameConfig config, long seed, boolean colorEnabled, Scanner input) {
         super(config, seed, colorEnabled, input);
         this.exploration = new ExplorationServiceImpl();
     }
