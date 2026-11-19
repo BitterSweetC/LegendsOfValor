@@ -5,10 +5,9 @@ import java.util.*;
 import legends.config.GameConfig;
 import legends.entity.template.HeroTto;
 
-/** The main playable character. Handles stats, leveling, inventory and combat skills. */
-public final class Hero extends Combatant {
+// Hero character. Handles behaviors of hero
+public abstract class Hero extends Combatant {
     private final GameConfig config;
-    private final String heroClass;
     private final Inventory inventory = new Inventory();
     private final Equipment equipment = new Equipment();
     private final HeroTto template;
@@ -20,11 +19,10 @@ public final class Hero extends Combatant {
     private String terrainState;
     private double terrainBonus;
 
-    public Hero(HeroTto definition, GameConfig config) {
+    protected Hero(HeroTto definition, GameConfig config) {
         super(definition.getName(), 1, definition.getHp());
         template = definition;
         this.config = config;
-        heroClass = definition.getHeroClass();
         mp = maxMp = definition.getMp();
         gold = definition.getInitialGold();
         experience = definition.getInitialExp();
@@ -91,7 +89,7 @@ public final class Hero extends Combatant {
         
         String kind = item.getPotion().getEffectType();
         double amount = item.getPotionAmount();
-        // attribute potions don't stack - reject if we already have a stronger one
+        //if we have a stronger one the new one is not work
         if(!kind.equals("HEALTH") && !kind.equals("MANA")) {
             amount = Math.min(item.getPotion().getMaxRatio(), amount);
             if(amount <= getStrongest("POTION_" + kind))
@@ -108,7 +106,7 @@ public final class Hero extends Combatant {
     public List<Skill> getUnlockedSkills() {
         List<Skill> unlockedSkills = new ArrayList<>();
         for(Skill skill : config.getSkills())
-            if(skill.getHeroClass().equals(heroClass) && skill.getUnlockLevel() <= level)
+            if(skill.getHeroClass().equals(getHeroClass()) && skill.getUnlockLevel() <= level)
                 unlockedSkills.add(skill);
         return Collections.unmodifiableList(unlockedSkills);
     }
@@ -141,7 +139,7 @@ public final class Hero extends Combatant {
 
     public void gainExperience(long amount) {
         experience += amount;
-        // can chain multiple level-ups from a single exp reward
+        // you can upgrade many levels
         while(experience >= getThreshold(level + 1)) {
             level++;
             growAttributes();
@@ -151,27 +149,17 @@ public final class Hero extends Combatant {
     }
 
     private void growAttributes() {
-        // favored stats grow faster (10% vs 5%)
-        List<String> favoredAttributes;
-        switch(heroClass) {
-            case "WARRIOR" :
-                favoredAttributes = Arrays.asList("STR", "AGI");
-                break;
-            case "SORCERER" :
-                favoredAttributes = Arrays.asList("DEX", "AGI");
-                break;
-            case "PALADIN" :
-                favoredAttributes = Arrays.asList("STR", "DEX");
-                break;
-            default :
-                throw new IllegalArgumentException("Unknown hero class: " + heroClass);
-        }
+        // favored stats grow faster
+        List<String> favoredAttributes = getFavoredAttributes();
         for(String attribute : attributes.keySet()) {
             boolean favored = favoredAttributes.contains(attribute);
             double growth = favored ? 1.10 : 1.05;
             attributes.put(attribute, Math.round(attributes.get(attribute) * growth));
         }
     }
+
+    //sone attibutes are grow better
+    protected abstract List<String> getFavoredAttributes();
 
     public long getThreshold(int targetLevel) {
         // Experience is cumulative; each level costs current level * factor.
@@ -199,7 +187,7 @@ public final class Hero extends Combatant {
     }
 
     public String toString() {
-        return super.toString() + " " + heroClass + " MP " + mp + "/" + maxMp + " EXP " + experience + " Gold " + gold
+        return super.toString() + " " + getHeroClass() + " MP " + mp + "/" + maxMp + " EXP " + experience + " Gold " + gold
                 + " Stats " + attributes;
     }
 
@@ -207,9 +195,7 @@ public final class Hero extends Combatant {
         return config;
     }
 
-    public String getHeroClass() {
-        return heroClass;
-    }
+    public abstract String getHeroClass();
 
     public Inventory getInventory() {
         return inventory;
