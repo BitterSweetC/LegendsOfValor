@@ -33,6 +33,28 @@ public abstract class Hero extends Combatant {
                 slots.add(skill);
     }
 
+    public void setTerrainBonus(String stat, double bonus) {
+        terrainStat = stat;
+        terrainBonus = bonus;
+    }
+
+    public void clearTerrainBonus() {
+        terrainStat = null;
+        terrainBonus = 0;
+    }
+
+    // Valor HP Recovery
+    public long getHpRecovery(double fraction) { return (long) Math.ceil(maxHp * fraction); }
+    public long getMpRecovery(double fraction) { return (long) Math.ceil(maxMp * fraction); }
+
+    // Valor Respawn
+    public void respawn() {
+        hp = maxHp;
+        mp = maxMp;
+        clearEffects();
+        clearTerrainBonus();
+    }
+
     public long getMp() {
         return mp;
     }
@@ -84,6 +106,10 @@ public abstract class Hero extends Combatant {
     }
 
     public void drink(ItemInstance item) {
+        drink(item, 0);                    // 0 = until battle ends (original behavior)
+    }
+
+    public void drink(ItemInstance item, int rounds) {
         if(item.getLevel() > level)
             throw new IllegalArgumentException(item.getName() + " requires hero level " + item.getLevel() + "; current level: " + level + ".");
         
@@ -94,7 +120,7 @@ public abstract class Hero extends Combatant {
             amount = Math.min(item.getPotion().getMaxRatio(), amount);
             if(amount <= getStrongest("POTION_" + kind))
                 throw new IllegalArgumentException("An equal or stronger " + kind + " potion boost is already active. Potion boosts do not stack.");
-            effect("potion_" + kind, "POTION_" + kind, amount, 0);
+            effect("potion_" + kind, "POTION_" + kind, amount, rounds);
         }else if(kind.equals("HEALTH"))
             hp += (long) Math.ceil(amount);
         else

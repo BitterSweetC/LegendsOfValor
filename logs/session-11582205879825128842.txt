@@ -1,0 +1,33 @@
+Seed: 319342806119916
+Session statistics
+Steps: 2 | Encounters: 1
+Battles: 1 won, 0 lost, 0 unfinished
+Actions: Attack=3  Skill=0  Spell=0  Potion=0  Equipment=1  
+Trading: Bought 3 / 390 gold | Sold 0 / 0 gold | Repairs 0 / 0 gold
+Hero combat (potion recovery excludes round recovery, leveling and revival)
+Hero                     Damage dealt Damage taken  Potion HP  Potion MP
+Gaerdal_Ironhand                  443            0          0          0
+Sehanine_Monnbow                  245           16          0          0
+Hero growth (reward gold excludes starting gold and sales)
+Gaerdal_Ironhand | Level: 3 (+2) | EXP: 37 | EXP gained: 30 | Reward gold: 415 | Gold held: 1569
+Sehanine_Monnbow | Level: 3 (+2) | EXP: 38 | EXP gained: 30 | Reward gold: 415 | Gold held: 2725
+
+Action history
+Market | Sehanine_Monnbow | Buy Crossbow | 190 gold
+Market | Gaerdal_Ironhand | Buy Dagger | 90 gold
+Market | Gaerdal_Ironhand | Buy LIGHT Armor | 110 gold
+Move 1 | Position (2, 5)
+Reward | Gaerdal_Ironhand | Gold +0 | EXP +3
+Reward | Sehanine_Monnbow | Gold +0 | EXP +3
+Explore | Equipment | Gaerdal_Ironhand | LIGHT Armor | BOTH
+Move 2 | Position (2, 6)
+Battle 1 | Started | [Goblin Raider Lv4 HP 303/303, BigBad-Wolf Lv1 HP 140/140, Natsunomeryu Lv2 HP 245/245]
+Battle 1 | Round 1 | Attack | Hero attack: Gaerdal_Ironhand -> Goblin Raider: 303 damage | HP 303 -> 0/303; defeated
+Battle 1 | Round 1 | Attack | Hero attack: Sehanine_Monnbow -> Natsunomeryu: 245 damage (critical) | HP 245 -> 0/245; defeated
+Battle 1 | Round 1 | Monster attack | Enemy attack: BigBad-Wolf -> Sehanine_Monnbow: 16 damage | HP 220 -> 204/220
+Battle 1 | Round 1 | Round recovery | Round recovery: Gaerdal_Ironhand | HP +0 (220 -> 220/220) | MP +0 (118 -> 118/118)
+Battle 1 | Round 1 | Round recovery | Round recovery: Sehanine_Monnbow | HP +11 (204 -> 215/220) | MP +0 (618 -> 618/618)
+Battle 1 | Round 2 | Attack | Hero attack: Gaerdal_Ironhand -> BigBad-Wolf: 140 damage | HP 140 -> 0/140; defeated
+Battle 1 | Victory
+Reward | Gaerdal_Ironhand | Gold +415 | EXP +27
+Reward | Sehanine_Monnbow | Gold +415 | EXP +27

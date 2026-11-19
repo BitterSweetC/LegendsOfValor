@@ -4,6 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="9597dbf4-25ed-40a2-b99e-4c17867b1722" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/HeroSlot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/LvGameSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/LvWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/MhGameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/MhGameController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/MhGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/MhGameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/Hero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/controller/MhGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/controller/MhGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/enums/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/enums/GameState.java" afterDir="false" />
     <list default="true" id="9597dbf4-25ed-40a2-b99e-4c17867b1722" name="Changes" comment="continue">
       <change afterPath="$PROJECT_DIR$/Legends of valor.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" afterDir="false" />
@@ -31,7 +45,43 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0000000000108014" />
+      <entry key="MS500" value="1.0064076008687244" />
+      <entry key="S2" value="1.282926653627951" />
+      <entry key="S5" value="1.6034892594181318" />
+      <entry key="S10" value="1.7768457114627922" />
+      <entry key="S30" value="1.9192738911151626" />
+      <entry key="S60" value="1.9588654221330628" />
+      <entry key="M2" value="1.9921994318893361" />
+      <entry key="M5" value="2.377379162503" />
+      <entry key="M10" value="3.598755112545859" />
+      <entry key="M15" value="4.821306625247836" />
+      <entry key="M30" value="7.391128439272953" />
+      <entry key="H1" value="10.454637521730211" />
+      <entry key="H2" value="14.727843063140805" />
+      <entry key="H4" value="19.371746540508784" />
+      <entry key="D1" value="26.15043726224175" />
+      <entry key="W1" value="27.723258157979753" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.025445265098331497" />
+      <entry key="MS500" value="0.75243490253278" />
+      <entry key="S2" value="1.7862172081498064" />
+      <entry key="S5" value="2.3644921097333214" />
+      <entry key="S10" value="2.6475091658024295" />
+      <entry key="S30" value="2.8735507143471515" />
+      <entry key="S60" value="2.9356458167884223" />
+      <entry key="M2" value="2.9807655806267412" />
+      <entry key="M5" value="3.4680016279270274" />
+      <entry key="M10" value="5.473753829966045" />
+      <entry key="M15" value="8.000065028368626" />
+      <entry key="M30" value="15.726366523050698" />
+      <entry key="H1" value="38.377841107076875" />
+      <entry key="H2" value="95.37487459647694" />
+      <entry key="H4" value="170.6858801074909" />
+      <entry key="D1" value="291.5305347968363" />
+      <entry key="W1" value="320.808141425136" />
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0000116767636857" />
       <entry key="S2" value="1.0584562057502591" />
@@ -107,6 +157,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "5-game-flow",
+    "junie.onboarding.icon.badge.shown": "true",
     "git-widget-placeholder": "Implementation",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
