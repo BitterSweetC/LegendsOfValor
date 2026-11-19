@@ -82,7 +82,7 @@ public final class ValorWorld {
 
     public boolean moveHero(Hero hero, int rowChange, int colChange) {
         Position current = heroes.get(hero);
-        if (current == null) {
+        if (current == null || !hero.isAlive()) {
             return false;
         }
 
@@ -402,8 +402,7 @@ public final class ValorWorld {
     public List<Position> getTeleportTargets(Hero hero, Hero teammate) {
         Position from = heroes.get(hero);
         Position mate = heroes.get(teammate);
-        if(from == null || mate == null || hero == teammate || !hero.isAlive()
-                || getLane(from.getCol()) == getLane(mate.getCol()))
+        if(from == null || mate == null || hero == teammate || !hero.isAlive() || !teammate.isAlive() || getLane(from.getCol()) == getLane(mate.getCol()))
             return Collections.emptyList();
 
         List<Position> targets = new ArrayList<>();
