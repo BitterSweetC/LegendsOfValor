@@ -5,24 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9597dbf4-25ed-40a2-b99e-4c17867b1722" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/HeroSlot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/LvGameSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/LvWorld.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/legends/entity/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/MhGameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/MhGameController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/MhGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/MhGameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/Hero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/legends/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/legends/controller/MhGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/controller/MhGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/LvWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/LvWorld.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld$Position.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/enums/GameState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/enums/GameState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/factory/VWorldGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/factory/VWorldGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/legends/enums/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/enums/GameState.java" afterDir="false" />
-    <list default="true" id="9597dbf4-25ed-40a2-b99e-4c17867b1722" name="Changes" comment="continue">
-      <change afterPath="$PROJECT_DIR$/Legends of valor.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/legends/service/impl/BattleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/service/impl/BattleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/legends/service/impl/DamageCalculatorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/service/impl/DamageCalculatorServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +36,10 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedSelected>
@@ -99,7 +96,7 @@
       <entry key="H4" value="28.97029908634663" />
       <entry key="D1" value="55.22952330914137" />
       <entry key="W1" value="187.43052183116114" />
-    </decayedCancelled>
+    </decayedShown>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
@@ -158,9 +155,8 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "5-game-flow",
+    "git-widget-placeholder": "master",
     "junie.onboarding.icon.badge.shown": "true",
-    "git-widget-placeholder": "Implementation",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

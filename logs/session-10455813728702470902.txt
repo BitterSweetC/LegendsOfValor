@@ -1,0 +1,39 @@
+Seed: 325425195491458
+Session statistics
+Steps: 7 | Encounters: 1
+Battles: 1 won, 0 lost, 0 unfinished
+Actions: Attack=2  Skill=0  Spell=1  Potion=0  Equipment=0  
+Trading: Bought 3 / 605 gold | Sold 0 / 0 gold | Repairs 0 / 0 gold
+Hero combat (potion recovery excludes round recovery, leveling and revival)
+Hero                     Damage dealt Damage taken  Potion HP  Potion MP
+Caliber_Heist                     575           76          0          0
+Hero growth (reward gold excludes starting gold and sales)
+Caliber_Heist | Level: 3 (+2) | EXP: 50 | EXP gained: 42 | Reward gold: 515 | Gold held: 2410
+
+Action history
+Market | Caliber_Heist | Buy Staff | 145 gold
+Market | Caliber_Heist | Buy Breath_of_Fire | 350 gold
+Market | Caliber_Heist | Buy LIGHT Armor | 110 gold
+Move 1 | Position (4, 9)
+Reward | Caliber_Heist | Gold +0 | EXP +8
+Move 2 | Position (5, 9)
+Reward | Caliber_Heist | Gold +200 | EXP +0
+Move 3 | Position (5, 8)
+Move 4 | Position (5, 7)
+Reward | Caliber_Heist | Gold +0 | EXP +16
+Move 5 | Position (4, 7)
+Move 6 | Position (4, 6)
+Move 7 | Position (4, 5)
+Battle 1 | Started | [Goblin Scout Lv3 HP 210/210, Stone Guardian Lv3 HP 365/365]
+Battle 1 | Round 1 | Spell | Caliber_Heist casts Breath_of_Fire on Stone Guardian (100 MP)
+Battle 1 | Round 1 | Spell | Hero attack: Caliber_Heist -> Stone Guardian: 321 damage | HP 365 -> 44/365
+Battle 1 | Round 1 | Spell | Stone Guardian: FIRE reduces defense by 10% for 3 rounds including this round (reapplying refreshes duration; does not stack)
+Battle 1 | Round 1 | Monster attack | Enemy attack: Goblin Scout -> Caliber_Heist: 24 damage | HP 325 -> 301/325
+Battle 1 | Round 1 | Monster attack | Enemy attack: Stone Guardian -> Caliber_Heist: 28 damage | HP 301 -> 273/325
+Battle 1 | Round 1 | Round recovery | Round recovery: Caliber_Heist | HP +17 (273 -> 290/325) | MP +37 (360 -> 397/460)
+Battle 1 | Round 2 | Attack | Hero attack: Caliber_Heist -> Stone Guardian: 44 damage | HP 44 -> 0/365; defeated
+Battle 1 | Round 2 | Monster attack | Enemy attack: Goblin Scout -> Caliber_Heist: 24 damage | HP 290 -> 266/325
+Battle 1 | Round 2 | Round recovery | Round recovery: Caliber_Heist | HP +17 (266 -> 283/325) | MP +37 (397 -> 434/460)
+Battle 1 | Round 3 | Attack | Hero attack: Caliber_Heist -> Goblin Scout: 210 damage | HP 210 -> 0/210; defeated
+Battle 1 | Victory
+Reward | Caliber_Heist | Gold +315 | EXP +18

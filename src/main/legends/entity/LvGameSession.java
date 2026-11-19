@@ -8,7 +8,7 @@ import legends.enums.GameState;
 public final class LvGameSession {
     public static final int LANES = 3; // hero lanes
 
-    private final LvWorld world; // assuming LvWorld exists for now need to verify when partner B is done
+    private final ValorWorld world;
     private final List<HeroSlot> slots = new ArrayList<>(); // Exactly three heroes total, one per lane
     private int round = 1;
     private GameState state = GameState.HERO_PHASE; // default to heroes acting first
@@ -16,7 +16,7 @@ public final class LvGameSession {
 
     /** Assuming that heroes.get(i) starts in lanes[i] */
     // todo: tweak lane logic if necessary ?
-    public LvGameSession(LvWorld world, List<Hero> heroes, int[] lanes) {
+    public LvGameSession(ValorWorld world, List<Hero> heroes, int[] lanes) {
         if (world == null || heroes == null || lanes == null)
             throw new IllegalArgumentException("World, heroes and lanes are required");
         if (heroes.size() != LANES || lanes.length != LANES)
@@ -41,7 +41,7 @@ public final class LvGameSession {
             slots.add(new HeroSlot("H" + (i + 1), heroes.get(i), lanes[i], world.getHeroSpawn(lanes[i])));
     }
 
-    public LvWorld getWorld() { return world; }
+    public ValorWorld getWorld() { return world; }
 
     public List<HeroSlot> getSlots() { return Collections.unmodifiableList(slots); }
 

@@ -34,12 +34,12 @@ public abstract class Hero extends Combatant {
     }
 
     public void setTerrainBonus(String stat, double bonus) {
-        terrainStat = stat;
+        terrainState = stat;
         terrainBonus = bonus;
     }
 
     public void clearTerrainBonus() {
-        terrainStat = null;
+        terrainState = null;
         terrainBonus = 0;
     }
 
