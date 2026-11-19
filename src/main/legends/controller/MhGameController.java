@@ -3,6 +3,7 @@ package legends.controller;
 import legends.config.GameConfig;
 import legends.entity.*;
 import legends.entity.template.HeroTto;
+import legends.factory.HeroFactory;
 import legends.enums.GameState;
 import legends.enums.SkillTargetMode;
 import legends.service.BattleService;
@@ -96,7 +97,7 @@ public final class MhGameController extends GameController{
         while(heroes.size() < heroCount) {
             HeroTto definition = chooseHero("Select hero " + (heroes.size() + 1), available);
             if(definition != null) {
-                heroes.add(new Hero(definition, getConfig()));
+                heroes.add(HeroFactory.create(definition, getConfig()));
                 available.remove(definition);
             }
         }

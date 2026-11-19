@@ -18,6 +18,11 @@
       <change beforePath="$PROJECT_DIR$/src/main/legends/controller/MhGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/controller/MhGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/legends/enums/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/enums/GameState.java" afterDir="false" />
+    <list default="true" id="9597dbf4-25ed-40a2-b99e-4c17867b1722" name="Changes" comment="continue">
+      <change afterPath="$PROJECT_DIR$/Legends of valor.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/service/impl/BattleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/service/impl/BattleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/legends/service/impl/DamageCalculatorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/service/impl/DamageCalculatorServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,32 +37,14 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Interface" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
-  </component>
   <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
-      <entry key="MS100" value="0.022561393680038996" />
-      <entry key="MS500" value="0.46846072343621276" />
-      <entry key="S2" value="0.8273100425752845" />
-      <entry key="S5" value="0.9269734991758295" />
-      <entry key="S10" value="0.9627946298021347" />
-      <entry key="S30" value="0.9874411453858937" />
-      <entry key="S60" value="0.99370077139744" />
-      <entry key="M2" value="0.9971628346035327" />
-      <entry key="M5" value="1.0947878536092408" />
-      <entry key="M10" value="1.8787633355267954" />
-      <entry key="M15" value="3.182765652914649" />
-      <entry key="M30" value="8.339218870172735" />
-      <entry key="H1" value="27.92660207281062" />
-      <entry key="H2" value="80.64977282390784" />
-      <entry key="H4" value="151.31607535015144" />
-      <entry key="D1" value="265.3805603005832" />
-      <entry key="W1" value="293.08495399002516" />
-    </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0000000000108014" />
       <entry key="MS500" value="1.0064076008687244" />
@@ -95,6 +82,61 @@
       <entry key="H4" value="170.6858801074909" />
       <entry key="D1" value="291.5305347968363" />
       <entry key="W1" value="320.808141425136" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000116767636857" />
+      <entry key="S2" value="1.0584562057502591" />
+      <entry key="S5" value="1.3212639292081512" />
+      <entry key="S10" value="1.5867394949026827" />
+      <entry key="S30" value="2.800109687796188" />
+      <entry key="S60" value="4.822790679664806" />
+      <entry key="M2" value="7.463307773165628" />
+      <entry key="M5" value="10.94670613864323" />
+      <entry key="M10" value="12.98211179952042" />
+      <entry key="M15" value="13.854368552461464" />
+      <entry key="M30" value="14.950768972382885" />
+      <entry key="H1" value="16.55959418094004" />
+      <entry key="H2" value="21.34898139378315" />
+      <entry key="H4" value="28.97029908634663" />
+      <entry key="D1" value="55.22952330914137" />
+      <entry key="W1" value="187.43052183116114" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="1.3873640190607962E-183" />
+      <entry key="S60" value="8.82924318393493E-92" />
+      <entry key="M2" value="7.898796251424609E-46" />
+      <entry key="M5" value="3.1158904437081312E-18" />
+      <entry key="M10" value="4.978250470970198E-9" />
+      <entry key="M15" value="5.827281596712955E-6" />
+      <entry key="M30" value="0.0068255354250604285" />
+      <entry key="H1" value="0.23365656233842855" />
+      <entry key="H2" value="1.367178234594383" />
+      <entry key="H4" value="3.3071639129175936" />
+      <entry key="D1" value="8.81599016612071" />
+      <entry key="W1" value="26.914777044107392" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.004549740572142405" />
+      <entry key="MS500" value="0.34010290653775566" />
+      <entry key="S2" value="0.8201628738652543" />
+      <entry key="S5" value="1.2146794139944572" />
+      <entry key="S10" value="1.5293195751679016" />
+      <entry key="S30" value="2.760898313141019" />
+      <entry key="S60" value="4.783338177467333" />
+      <entry key="M2" value="7.432085530251484" />
+      <entry key="M5" value="10.92967277697534" />
+      <entry key="M10" value="12.972558864909915" />
+      <entry key="M15" value="13.847739524553958" />
+      <entry key="M30" value="14.954114173003855" />
+      <entry key="H1" value="16.79119211887062" />
+      <entry key="H2" value="22.71442402683215" />
+      <entry key="H4" value="32.275996993954855" />
+      <entry key="D1" value="64.04500319125208" />
+      <entry key="W1" value="214.34511030862558" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -112,28 +154,26 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "5-game-flow",
     "junie.onboarding.icon.badge.shown": "true",
+    "git-widget-placeholder": "Implementation",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true"
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
+        <option value="bundled-jdk-30f59d01ecdd-ac68fc9d2b05-intellij.indexing.shared.core-IU-263.7307.200" />
+        <option value="bundled-js-predefined-d6986cc7102b-56aff7b04f6f-JavaScript-IU-263.7307.200" />
       </set>
     </attachedChunks>
   </component>
@@ -149,5 +189,12 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="InterfaceInitial" />
+    <MESSAGE value="SomeImplementation" />
+    <MESSAGE value="continue" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue" />
   </component>
 </project>
