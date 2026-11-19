@@ -1,13 +1,16 @@
 package legends.entity;
 
+import legends.entity.item.Armor;
+import legends.entity.item.Spell;
+import legends.entity.item.Weapon;
 import legends.entity.template.ArmorTto;
 import legends.entity.template.ItemTto;
 import legends.entity.template.PotionTto;
 import legends.entity.template.SpellTto;
 import legends.entity.template.WeaponTto;
 
-// Wraps an item definition with instance-specific state
-public final class ItemInstance {
+//Wraps an item definition with instance-specific state.
+public abstract class ItemInstance {
     private final long id;
     private final ItemTto definition;
     private final String category;
@@ -16,12 +19,12 @@ public final class ItemInstance {
     private int durability;
     private boolean used;
 
-    public ItemInstance(long id, ItemTto definition, int level, boolean starter) {
+    protected ItemInstance(long id, ItemTto definition, int level, boolean starter) {
         this.id = id;
         this.category = definition.getCategory();
         this.definition = definition;
         this.level = definition instanceof SpellTto ? getSpell().getRequiredLevel() : level;
-        if(category.equals("spells"))
+        if(this instanceof Spell)
             price = definition.getBasePrice();
         else if(starter)
             price = 80L;
@@ -30,14 +33,14 @@ public final class ItemInstance {
             price = (long) Math.ceil(definition.getBasePrice() * priceMultiplier);
         }
 
-        if(category.equals("weapons")) {
+        if(this instanceof Weapon) {
             if(starter)
                 maxDurability = 35;
             else {
                 int extraDurability = 2 * (level - 1);
                 maxDurability = 30 + extraDurability;
             }
-        }else if(category.equals("armor")) {
+        }else if(this instanceof Armor) {
             int extraDurability = 3 * (level - 1);
             maxDurability = 40 + extraDurability;
         }else
@@ -95,7 +98,7 @@ public final class ItemInstance {
     }
 
     public double getDamage() {
-        if(definition instanceof WeaponTto)
+        if(this instanceof Weapon)
             return getWeapon().getBaseDamage() + (level - 1) * getWeapon().getDamageGrowth();
         return getSpell().getBaseDamage();
     }
@@ -117,14 +120,14 @@ public final class ItemInstance {
     }
 
     public String getDetails() {
-        if(category.equals("weapons"))
+        if(this instanceof Weapon)
             return "damage " + (long) Math.ceil(getDamage()) + ", magic "
                 + (long) Math.ceil(getMagicBonus()) + ", hands " + getWeapon().getHands();
         
-        if(category.equals("armor"))
+        if(this instanceof Armor)
             return getArmor().getType() + " armor, defense " + (long) Math.ceil(getDefense());
         
-        if(category.equals("spells"))
+        if(this instanceof Spell)
             return "single-use spell, base damage " + (long) Math.ceil(getDamage()) + ", MP cost "
                     + (long) Math.ceil(getManaCost()) + ", " + getSpell().getType();
         

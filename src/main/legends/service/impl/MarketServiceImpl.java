@@ -9,6 +9,7 @@ import legends.entity.ItemInstance;
 import legends.entity.Market;
 import legends.entity.SessionStatistics;
 import legends.entity.template.ItemTto;
+import legends.factory.ItemFactory;
 import legends.service.MarketService;
 
 // Handles all market transactions - buying, selling, repairs, restocking
@@ -30,7 +31,7 @@ public final class MarketServiceImpl implements MarketService {
 
     @Override
     public ItemInstance create(ItemTto definition, int level, boolean starter) {
-        return new ItemInstance(nextId++, definition, level, starter);
+        return ItemFactory.create(nextId++, definition, level, starter);
     }
 
     @Override

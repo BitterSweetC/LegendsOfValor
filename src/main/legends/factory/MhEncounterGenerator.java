@@ -27,7 +27,7 @@ public final class MhEncounterGenerator {
         
         for(int i = 0; i < count; i++) {
             int level = Math.max(1, highestLevel + levelOffsets[RandomWeights.pick(random, levelWeights)]);
-            result.add(new Monster(config.getMonsterTtos().get(RandomWeights.pick(random, weights)), level));
+            result.add(MonsterFactory.create(config.getMonsterTtos().get(RandomWeights.pick(random, weights)), level));
         }
         return result;
     }

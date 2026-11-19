@@ -9,6 +9,14 @@ import legends.entity.ItemInstance;
 import legends.entity.Monster;
 import legends.entity.Skill;
 import legends.entity.StatusEffect;
+import legends.entity.item.FireSpell;
+import legends.entity.item.IceSpell;
+import legends.entity.item.LightningSpell;
+import legends.entity.monster.Dragon;
+import legends.entity.monster.Goblin;
+import legends.entity.monster.Golem;
+import legends.entity.monster.Spirit;
+import legends.entity.monster.Vampire;
 import legends.enums.SkillEffectType;
 import legends.enums.SkillTargetMode;
 import legends.service.BattleService;
@@ -28,7 +36,7 @@ public final class BattleServiceImpl implements BattleService {
         String side = source instanceof Hero ? "Hero attack: " : "Enemy attack: ";
         // spirit's passive gives them a bonus dodge chance on top of the normal one
         double dodgeBonus = 0;
-        if(target instanceof Monster && ((Monster) target).getType().equals("SPIRIT") && random.nextDouble() < 0.15)
+        if(target instanceof Spirit && random.nextDouble() < 0.15)
             dodgeBonus = 0.10;
         
         if(random.nextDouble() < calculator.getDodge(target, dodgeBonus)) {
@@ -55,9 +63,9 @@ public final class BattleServiceImpl implements BattleService {
     }
 
     private double applyAttackPassive(Monster monster, double rawDamage) {
-        if(monster.getType().equals("DRAGON") && random.nextDouble() < 0.20)
+        if(monster instanceof Dragon && random.nextDouble() < 0.20)
             rawDamage *= 1.30;
-        if(monster.getType().equals("GOBLIN") && random.nextDouble() < 0.18)
+        if(monster instanceof Goblin && random.nextDouble() < 0.18)
             rawDamage *= 1.50;
         return rawDamage;
     }
@@ -67,7 +75,7 @@ public final class BattleServiceImpl implements BattleService {
         for(StatusEffect effect : target.getEffects())
             if(effect.getKind().equals("REDUCTION"))
                 multiplier *= 1 - effect.getValue();
-        if(physical && target instanceof Monster && ((Monster) target).getType().equals("GOLEM"))
+        if(physical && target instanceof Golem)
             multiplier *= 1 - 0.15;
         return multiplier;
     }
@@ -79,8 +87,7 @@ public final class BattleServiceImpl implements BattleService {
                 armor.wear();
         }
 
-        if(source instanceof Monster && ((Monster) source).getType().equals("VAMPIRE")
-                && random.nextDouble() < 0.25) {
+        if(source instanceof Vampire && random.nextDouble() < 0.25) {
             long beforeHp = source.getHp();
             source.heal((long) Math.ceil(actualDamage * 0.35));
             log.add("Life steal: " + source.getName() + " | HP +" + (source.getHp() - beforeHp)
@@ -108,19 +115,14 @@ public final class BattleServiceImpl implements BattleService {
 
         String type = spell.getSpell().getType();
         String attribute;
-        switch(type) {
-            case "ICE" :
-                attribute = "damage";
-                break;
-            case "FIRE" :
-                attribute = "defense";
-                break;
-            case "LIGHTNING" :
-                attribute = "dodge chance";
-                break;
-            default :
-                throw new IllegalArgumentException("Unknown spell type: " + type);
-        }
+        if(spell instanceof IceSpell)
+            attribute = "damage";
+        else if(spell instanceof FireSpell)
+            attribute = "defense";
+        else if(spell instanceof LightningSpell)
+            attribute = "dodge chance";
+        else
+            throw new IllegalArgumentException("Unknown spell type: " + type);
         
         long mp = (long) Math.ceil(spell.getManaCost());
         

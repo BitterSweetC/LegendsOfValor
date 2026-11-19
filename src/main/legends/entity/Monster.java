@@ -1,13 +1,14 @@
 package legends.entity;
 
+import legends.entity.monster.Exoskeleton;
 import legends.entity.template.MonsterTto;
 
 // Enemy combatant
-public final class Monster extends Combatant {
+public abstract class Monster extends Combatant {
     private final MonsterTto definition;
     private final String type;
 
-    public Monster(MonsterTto definition, int level) {
+    protected Monster(MonsterTto definition, int level) {
         super(definition.getName(), level, definition.getHp() + definition.getHpGrowth() * (level - 1L));
         this.definition = definition;
         type = definition.getType();
@@ -25,7 +26,7 @@ public final class Monster extends Combatant {
     public double getDefense() {
         double defense = definition.getDefense() + definition.getDefenseGrowth() * (level - 1L);
         // exoskeleton passive kicks in at low hp
-        if(type.equals("EXOSKELETON") && hp < maxHp * 0.40)
+        if(this instanceof Exoskeleton && hp < maxHp * 0.40)
             defense *= 1.30;
         return defense * (1 - getStrongest("FIRE"));
     }
