@@ -342,6 +342,7 @@ public final class ValorWorld {
                 targets.add(hero);
         }
 
+        targets.sort(Comparator.comparingLong(Hero::getHp));   // weakest hero first
         return targets;
     }
 
@@ -351,25 +352,59 @@ public final class ValorWorld {
         if(current == null || !monster.isAlive())
             return false;
 
-        int row = current.getRow();
-        int col = current.getCol();
-
-        if(canMonsterEnter(current, row + 1, col)) {
-            monsters.put(monster, new Position(row + 1, col));
-            return true;
-        }
-
-        boolean terrainBlocksForward = isInBounds(row + 1, col) && (tiles[row + 1][col] == TileType.OBSTACLE || tiles[row + 1][col] == TileType.BLOCKED);
-        if(!terrainBlocksForward)
+        Position step = nextStepTowardNexus(current);
+        if(step == null)
             return false;
+        monsters.put(monster, step);
+        return true;
+    }
 
-        int lane = getLane(col);
-        int otherCol = col == lane * 3 ? col + 1 : col - 1;
-        if(canMonsterEnter(current, row, otherCol)) {
-            monsters.put(monster, new Position(row, otherCol));
-            return true;
+    /**
+     * Breadth-first search inside the monster's lane for the shortest route to the heroes' Nexus row,
+     * moving only forward or sideways around walls and obstacles. Returns the first step of that route.
+     * If the lane is cut off, it heads for the furthest reachable row instead; returns null when no legal
+     * step gains ground. The first step obeys every movement rule (no friendly
+     * monster in the space, never past a hero); later steps consider terrain and heroes, so the monster
+     * does not wander sideways when a hero blocks its lane.
+     */
+    private Position nextStepTowardNexus(Position start) {
+        if(start.getRow() == tiles.length - 1)
+            return null;   // already in the heroes' Nexus row
+
+        int lane = getLane(start.getCol());
+        Map<Position, Position> firstStep = new HashMap<>();
+        ArrayDeque<Position> queue = new ArrayDeque<>();
+        int[][] moves = { { 1, 0 }, { 0, -1 }, { 0, 1 } };   // forward first, so it wins ties
+
+        for(int[] m : moves) {
+            Position next = start.offset(m[0], m[1]);
+            if(getLane(next.getCol()) == lane && canMonsterEnter(start, next.getRow(), next.getCol())) {
+                firstStep.put(next, next);
+                queue.add(next);
+            }
         }
-        return false;
+
+        Position furthest = null;   // used when a hero or obstacle cuts the lane off completely
+        while(!queue.isEmpty()) {
+            Position p = queue.poll();
+            if(p.getRow() == tiles.length - 1)
+                return firstStep.get(p);
+            if(furthest == null || p.getRow() > furthest.getRow())
+                furthest = p;
+            for(int[] m : moves) {
+                Position next = p.offset(m[0], m[1]);
+                if(!firstStep.containsKey(next) && !next.equals(start) && isInBounds(next.getRow(), next.getCol())
+                        && getLane(next.getCol()) == lane
+                        && tiles[next.getRow()][next.getCol()] != TileType.OBSTACLE
+                        && tiles[next.getRow()][next.getCol()] != TileType.BLOCKED
+                        && !isBlockedByHero(start, next.getRow(), next.getCol())) {
+                    firstStep.put(next, firstStep.get(p));
+                    queue.add(next);
+                }
+            }
+        }
+        // No full route: still close in as far as possible, but never step sideways without gaining ground.
+        return furthest != null && furthest.getRow() > start.getRow() ? firstStep.get(furthest) : null;
     }
 
     private boolean canMonsterEnter(Position current, int row, int col) {
