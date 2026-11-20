@@ -79,12 +79,15 @@ public final class MhGameController extends GameController{
                 }
             }
         }
+        catch(QuitGameException e) {
+            // fall through: finishSession() below exports the statistics, then control returns to the selector
+        }
         catch(NoSuchElementException e) {
             if(getInput().ioException() != null)
                 throw new UncheckedIOException(getInput().ioException());
         }
         finishSession();
-        System.out.println("Goodbye.");
+        System.out.println("Returning to the game menu.");
     }
 
     private void setup() {
@@ -499,9 +502,7 @@ public final class MhGameController extends GameController{
                 System.out.print(colored("Quit? Character progress is not saved; statistics/history will be exported. Y/Q yes, N/0 cancel > ", CYAN));
                 String confirm = getInput().nextLine().trim().toUpperCase();
                 if(confirm.equals("Y") || confirm.equals("Q")) {
-                    finishSession();
-                    System.out.println("Goodbye.");
-                    System.exit(0);
+                    throw new QuitGameException();
                 }
                 if(confirm.equals("N") || confirm.equals("0"))
                     return true;
