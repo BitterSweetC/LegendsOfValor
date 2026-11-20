@@ -33,16 +33,6 @@ public abstract class Hero extends Combatant {
                 slots.add(skill);
     }
 
-    public void setTerrainBonus(String stat, double bonus) {
-        terrainState = stat;
-        terrainBonus = bonus;
-    }
-
-    public void clearTerrainBonus() {
-        terrainState = null;
-        terrainBonus = 0;
-    }
-
     // Valor HP Recovery
     public long getHpRecovery(double fraction) { return (long) Math.ceil(maxHp * fraction); }
     public long getMpRecovery(double fraction) { return (long) Math.ceil(maxMp * fraction); }
@@ -52,7 +42,7 @@ public abstract class Hero extends Combatant {
         hp = maxHp;
         mp = maxMp;
         clearEffects();
-        clearTerrainBonus();
+        clearBonus();
     }
 
     public long getMp() {
@@ -239,6 +229,11 @@ public abstract class Hero extends Combatant {
     public void clearBonus(){
         terrainState = null;
         terrainBonus = 0;
+    }
+
+    public void recoverFraction(double fraction) {
+        heal(getHpRecovery(fraction));
+        restoreMp(getMpRecovery(fraction));
     }
 
 
