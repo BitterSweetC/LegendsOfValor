@@ -1,6 +1,8 @@
 package legends.controller;
 
+import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.file.Paths;
 import java.util.*;
 
 import legends.config.GameConfig;
@@ -39,6 +41,7 @@ public final class LvGameController extends GameController {
     private int wavesSpawned;
     private final List<QueuedSpawn> queued = new ArrayList<>();
     private HeroSlot announced; // hero whose turn banner was already printed
+    private SessionStatistics statistics;
 
     public LvGameController(GameConfig config, long seed, boolean colorEnabled, Scanner input) {
         super(config, seed, colorEnabled, input);
@@ -76,14 +79,15 @@ public final class LvGameController extends GameController {
                 again = askRestart();
             }
         }
-        catch(QuitException e) {
-            // fall through to the goodbye message
+        catch(QuitGameException e) {
+            // fall through control returns to the selector
         }
         catch(NoSuchElementException e) {
             if(getInput().ioException() != null)
                 throw new UncheckedIOException(getInput().ioException());
         }
-        System.out.println("Goodbye.");
+
+        System.out.println("Returning to the game menu.");
     }
 
     // Prompts the user to restart the game
@@ -141,7 +145,7 @@ public final class LvGameController extends GameController {
 
         // Creating the session statistics and registering chosen heroes so we can use the statistics later
         random = new Random(getSeed());
-        SessionStatistics statistics = new SessionStatistics();
+        statistics = new SessionStatistics();
         markets = new MarketServiceImpl(getConfig(), random, statistics);
         for(Hero hero : heroes) {
             statistics.register(hero);
@@ -162,7 +166,6 @@ public final class LvGameController extends GameController {
         waves = new MonsterWaveGenerator();
         market = createMarket(); // shared market
         spawnWave(); // spawn the initial monsters
-        System.out.println(world.render(isColorEnabled())); // display the initial view of the map
     }
 
     // creates a shared market that all heroes use at their nexus
@@ -573,7 +576,7 @@ public final class LvGameController extends GameController {
             while(true) {
                 String confirm = readLine("Quit this game? Progress is not saved. Y yes, N/0 cancel > ").toUpperCase();
                 if(confirm.equals("Y") || confirm.equals("Q"))
-                    throw new QuitException(); // run() will catch this so the player can return to the game selector menu
+                    throw new QuitGameException(); // run() will catch this so the player can return to the game selector menu
                 if(confirm.equals("N") || confirm.equals("0"))
                     return true;
                 printError("Enter Y or N.");
@@ -604,7 +607,7 @@ public final class LvGameController extends GameController {
     // helper to display how the game works
     private void help() {
         System.out.println(
-                "====================== Legends of Valor ======================\n"
+                "============================================ Legends of Valor ============================================\n"
                 + "<------------~ COMMANDS ~------------>"
                 + "Heroes act first, then monsters. Each living hero takes ONE valid action per round.\n"
                 + "W/A/S/D move; F attack; C cast spell; U use potion; E equip/unequip an item; T teleport; R recall;\n"
@@ -685,10 +688,6 @@ public final class LvGameController extends GameController {
         return position == null ? "off the board" : "row " + position.getRow() + ", col " + position.getCol();
     }
 
-    // custom exception, this will be handled by run() so the user will return to the game selector menu
-    private static final class QuitException extends RuntimeException {
-    }
-
     // Helper class
     // Bundles the monster that is waiting to spawn in the corresponding lane
     private static final class QueuedSpawn {
@@ -699,5 +698,20 @@ public final class LvGameController extends GameController {
             this.monster = monster;
             this.lane = lane;
         }
+    }
+
+    /** Prints the statistics summary and saves the report to logs/. Safe to call more than once. */
+    private void finishSession() {
+        if(statistics == null)
+            return;
+        System.out.print(statistics.summary());
+        try {
+            System.out.println("Statistics and action history saved: " + statistics.save(Paths.get("logs"), getSeed()));
+        }
+        catch(IOException | SecurityException e) {
+            System.err.println("Cannot save statistics: " + e.getMessage() + ". Full report follows; copy it to keep a record.");
+            System.out.print(statistics.report(getSeed()));
+        }
+        statistics = null;
     }
 }

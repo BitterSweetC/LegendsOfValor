@@ -146,4 +146,8 @@ public abstract class GameController {
             }
         }
     }
+
+    // custom exception, this will be handled by run() so the user will return to the game selector menu
+    public static final class QuitGameException extends RuntimeException {
+    }
 }

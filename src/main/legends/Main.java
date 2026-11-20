@@ -75,7 +75,11 @@ public class Main {
             }
 
             if (controller != null) {
-                controller.run();
+                try {
+                    controller.run();
+                } catch (GameController.QuitGameException e) {
+                    System.out.println("Returning to the game menu.");
+                }
             }
         }
     }
