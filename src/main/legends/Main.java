@@ -60,16 +60,18 @@ public class Main {
             String choice = input.nextLine().trim();
             GameController controller = null;
 
-            if(choice.equals("0"))
-                return;
-            if(choice.equals("1")) {
-                controller = new MhGameController(config, seed, colorEnabled, input);
-            }
-            else if(choice.equals("2")) {
-                controller = new LvGameController(config, seed, colorEnabled, input);
-            }
-            else {
-                System.out.println("Enter 1, 2, or 0.");
+            switch (choice) {
+                case "0":
+                    return;
+                case "1":
+                    controller = new MhGameController(config, seed, colorEnabled, input);
+                    break;
+                case "2":
+                    controller = new LvGameController(config, seed, colorEnabled, input);
+                    break;
+                default:
+                    System.out.println("Enter 1, 2, or 0.");
+                    break;
             }
 
             if (controller != null) {
