@@ -6,6 +6,9 @@ import legends.enums.TileType;
 
 /** Stores the Valor board and the current position of each unit. */
 public final class ValorWorld {
+    private static final String HERO_COLOR = "\u001B[36m";
+    private static final String MONSTER_COLOR = "\u001B[31m";
+    private static final String RESET = "\u001B[0m";
     private final TileType[][] tiles;
     private final Map<Hero, Position> heroes = new HashMap<>();
     private final Map<Monster, Position> monsters = new HashMap<>();
@@ -236,7 +239,7 @@ public final class ValorWorld {
 
                 top.append(edge).append("  ");
                 bottom.append(edge).append("  ");
-                middle.append('|').append(cellContents(row, col)).append("|  ");
+                middle.append('|').append(cellContents(row, col, colorEnabled)).append("|  ");
             }
             out.append(top).append('\n').append(middle).append('\n').append(bottom).append("\n\n");
         }
@@ -248,7 +251,9 @@ public final class ValorWorld {
                 .append(legendEntry(TileType.BUSH, "Bush"))
                 .append(legendEntry(TileType.CAVE, "Cave"))
                 .append(legendEntry(TileType.KOULOU, "Koulou")).append('\n');
-        out.append("        Top row = monsters' Nexus, bottom row = heroes' Nexus. H1=hero, M1=monster.\n");
+        out.append("        Top row = monsters' Nexus, bottom row = heroes' Nexus. ")
+                .append(unitLabel("H1", HERO_COLOR, colorEnabled)).append("=hero, ")
+                .append(unitLabel("M1", MONSTER_COLOR, colorEnabled)).append("=monster.\n");
 
         for(Hero hero : getHeroes())
             out.append(String.format("  %-3s  %-20s %s  HP %d/%d  MP %d/%d%n",
@@ -263,7 +268,7 @@ public final class ValorWorld {
     }
 
     //格子里面内容
-    private String cellContents(int row, int col) {
+    private String cellContents(int row, int col, boolean colorEnabled) {
         if(tiles[row][col] == TileType.BLOCKED)
             return " X X X ";
 
@@ -271,7 +276,12 @@ public final class ValorWorld {
         Monster monster = getMonsterAt(row, col);
         String heroText = String.format("%-2s", hero == null ? "" : heroLabels.get(hero));
         String monsterText = String.format("%-3s", monster == null ? "" : monsterLabels.get(monster));
-        return " " + heroText + " " + monsterText;
+        return " " + unitLabel(heroText, HERO_COLOR, colorEnabled) + " "
+                + unitLabel(monsterText, MONSTER_COLOR, colorEnabled);
+    }
+
+    private static String unitLabel(String text, String color, boolean colorEnabled) {
+        return colorEnabled && !text.trim().isEmpty() ? color + text + RESET : text;
     }
 
     private static String legendEntry(TileType type, String name) {
