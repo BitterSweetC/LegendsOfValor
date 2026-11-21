@@ -9,6 +9,8 @@ This is a Java program that runs in the terminal and has two games. When it star
 ## Files
 ---------------------------------------------------------------------------
 
+In docs folder we have the UML, infrastructure and design files. 
+
 ### Core & Controller
 
 - `src/main/legends/controller/LvGameController.java`: Runs Legends of Valor. It lets the player choose three heroes and their lanes, runs the heroes' turn and the monsters' turn, handles the market, the rewards, the respawns, and the new waves, and checks who wins.
