@@ -451,9 +451,9 @@ public final class LvGameController extends GameController {
         for(Monster monster : new ArrayList<>(world.getMonsters())) {
             if(!monster.isAlive()) // skip fainted monsters, only alive monsters can act
                 continue;
-            List<Hero> targets = world.getAttackableHeroes(monster); // heroes within attack range will select one at random
+            List<Hero> targets = world.getAttackableHeroes(monster);
             if(!targets.isEmpty()) {
-                Hero target = targets.get(random.nextInt(targets.size())); // random hero the monster will attack
+                Hero target = targets.get(0); // In-range heroes are sorted by current HP.
                 System.out.println(world.getLabel(monster) + " attacks " + target.getName() + ":");
                 logs(combat.monsterAttack(monster, target));
                 if(!target.isAlive()) { // handle hero fainting
