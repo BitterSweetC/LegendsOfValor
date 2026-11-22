@@ -9,6 +9,7 @@ import legends.config.GameConfig;
 import legends.entity.*;
 import legends.entity.template.HeroTto;
 import legends.enums.GameState;
+import legends.enums.LvDifficulty;
 import legends.factory.HeroFactory;
 import legends.factory.MonsterWaveGenerator;
 import legends.factory.VWorldGenerator;
@@ -27,7 +28,6 @@ import legends.service.impl.MarketServiceImpl;
 public final class LvGameController extends GameController {
     // Game Constants: todo verify for fairness and smooth gameplay
     private static final double RECOVERY = 0.10; // HP and MP regained per round by living heroes
-    private static final int WAVE_INTERVAL = 8; // a new wave after every 8 completed rounds
     private static final int POTION_ROUNDS = 3; // potion-buff lifetime in Valor
     private static final int RESTOCK_EVERY_WAVES = 3; // market refresh policy
 
@@ -42,6 +42,7 @@ public final class LvGameController extends GameController {
     private final List<QueuedSpawn> queued = new ArrayList<>();
     private HeroSlot announced; // hero whose turn banner was already printed
     private SessionStatistics statistics;
+    private LvDifficulty difficulty;
 
     public LvGameController(GameConfig config, long seed, boolean colorEnabled, Scanner input) {
         super(config, seed, colorEnabled, input);
@@ -122,6 +123,7 @@ public final class LvGameController extends GameController {
         wavesSpawned = 0;
         queued.clear();
         announced = null;
+        difficulty = chooseDifficulty();
 
         List<HeroTto> available = new ArrayList<>(getConfig().getHeroTtos()); // heroes user hasn't picked yet
         List<Hero> heroes = new ArrayList<>(); // heroes the user has picked
@@ -162,6 +164,8 @@ public final class LvGameController extends GameController {
         // creates the hero slots, generates the lanes, and different space types
         world = new VWorldGenerator().generate(random);
         session = new LvGameSession(world, heroes, lanes);
+
+        record("Difficulty: " + difficulty);
 
         // places the hero slot in order so board labels are H1-H3
         for(HeroSlot slot : session.getSlots())
@@ -544,7 +548,7 @@ public final class LvGameController extends GameController {
 
         retryQueued(); // try to spawn monsters that are queued
         int completed = session.getRound() - 1;
-        if(completed > 0 && completed % WAVE_INTERVAL == 0) {
+        if(completed > 0 && completed % difficulty.getWaveInterval() == 0) {
             printError("A new wave of monsters appears!");
             spawnWave();
         }
@@ -675,7 +679,8 @@ public final class LvGameController extends GameController {
                 + "  2. ADVANCE: if it doesn't attack or is out of range, it moves one space toward your Nexus.\n"
                 + "  3. WAIT: if no step gets it closer.\n"
                 + "A hero and a monster may share a space; two monsters cannot.\n"
-                + "A new wave of three monsters, one per lane, appears every " + WAVE_INTERVAL + " rounds (same level as highest-level hero).\n"
+                + "A new wave of three monsters, one per lane, appears every few rounds, depending on the difficulty you pick\n"
+                + "(Easy: every 8 rounds, Medium: every 6, Hard: every 3), at the level of your highest-level hero.\n"
                 + "If you don't kill all the monsters before the next wave, the previous ones will still be present along with the newly spawned monsters.\n"
                 + "<------------~ HOW TO WIN ~------------>\n"
                 + "Reach the monsters' nexus to win (top row).\n"
@@ -787,5 +792,14 @@ public final class LvGameController extends GameController {
             System.out.print(statistics.report(getSeed()));
         }
         statistics = null;
+    }
+
+    private LvDifficulty chooseDifficulty() {
+        System.out.println("\nChoose a Difficulty");
+        LvDifficulty picked = null;
+        while(picked == null) {
+            picked = choose("Difficulty", Arrays.asList(LvDifficulty.values()));
+        }
+        return picked;
     }
 }
