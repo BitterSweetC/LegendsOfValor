@@ -1,0 +1,27 @@
+Seed: 385401869592166
+Session statistics
+Steps: 1 | Encounters: 0
+Battles: 0 won, 0 lost, 0 unfinished
+Actions: Attack=0  Skill=0  Spell=0  Potion=0  Equipment=0  
+Trading: Bought 0 / 0 gold | Sold 0 / 0 gold | Repairs 0 / 0 gold
+Hero combat (potion recovery excludes round recovery, leveling and revival)
+Hero                     Damage dealt Damage taken  Potion HP  Potion MP
+Gaerdal_Ironhand                    0            0          0          0
+Segojan_Earthcaller                 0            0          0          0
+Skoraeus_Stonebones                 0            0          0          0
+Hero growth (reward gold excludes starting gold and sales)
+Gaerdal_Ironhand | Level: 1 (+0) | EXP: 7 | EXP gained: 0 | Reward gold: 0 | Gold held: 1354
+Segojan_Earthcaller | Level: 1 (+0) | EXP: 5 | EXP gained: 0 | Reward gold: 0 | Gold held: 2500
+Skoraeus_Stonebones | Level: 1 (+0) | EXP: 4 | EXP gained: 0 | Reward gold: 0 | Gold held: 2500
+
+Action history
+Valor | Round 1 | H1 Gaerdal_Ironhand starts in lane 1
+Valor | Round 1 | H2 Segojan_Earthcaller starts in lane 2
+Valor | Round 1 | H3 Skoraeus_Stonebones starts in lane 3
+Valor | Round 1 | Wave 1 spawned | [Iron Colossus Lv1 HP 200/200, Casper Lv1 HP 95/95, Goblin Scout Lv1 HP 90/90]
+Valor | Round 1 | Move 1 | H1 Gaerdal_Ironhand | row 6, col 0 CAVE
+Valor | Round 1 | H2 Segojan_Earthcaller passed
+Valor | Round 1 | H3 Skoraeus_Stonebones passed
+Valor | Round 1 | M1 advances to row 1, col 1.
+Valor | Round 1 | M2 advances to row 1, col 4.
+Valor | Round 1 | M3 advances to row 1, col 7.

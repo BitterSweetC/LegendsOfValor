@@ -72,10 +72,14 @@ public final class LvGameController extends GameController {
                         printError("Invalid command: " + e.getMessage());
                     }
                 }
-                if(session.didHeroesWin())
+                if(session.didHeroesWin()) {
+                    record("Victory :D! Your heroes reached the monsters' Nexus.");
                     printSuccess("Victory :D! Your heroes reached the monsters' Nexus.");
-                else
-                    printError("Defeat D:!. A monster reached your Nexus.");
+                }
+                else {
+                    record("Defeat D:! A monster reached your Nexus.");
+                    printError("Defeat D:! A monster reached your Nexus.");
+                }
                 again = askRestart();
             }
         }
@@ -87,6 +91,7 @@ public final class LvGameController extends GameController {
                 throw new UncheckedIOException(getInput().ioException());
         }
 
+        finishSession();
         System.out.println("Returning to the game menu.");
     }
 
@@ -110,6 +115,7 @@ public final class LvGameController extends GameController {
      * Spawn the Heroes
      */
     private void setup() {
+        finishSession();
         session = null;
         world = null;
         market = null;
@@ -133,7 +139,7 @@ public final class LvGameController extends GameController {
             while(lane < 0) {
                 int pick = readNumber("Lane for " + definition.getName() + " (1 Top Lane, 2 Middle Lane, 3 Bottom Lane)", 1, 3) - 1;
                 if(taken[pick])
-                    printError("Lane " + pick + " already has a hero, choose a different one.");
+                    printError("Lane " + (pick + 1) + " already has a hero, choose a different one.");
                 else
                     lane = pick;
             }
@@ -162,7 +168,12 @@ public final class LvGameController extends GameController {
             if(!world.placeHero(slot.getHero(), slot.getHome()))
                 throw new IllegalStateException("Could not place " + slot.getHero().getName());
 
-        combat = new CombatServiceImpl(random);
+        // record for logging
+        for(HeroSlot slot : session.getSlots()) {
+            record(who(slot.getHero()) + " starts in lane " + (slot.getLane() + 1));
+        }
+
+        combat = new CombatServiceImpl(random, statistics);
         waves = new MonsterWaveGenerator();
         market = createMarket(); // shared market
         spawnWave(); // spawn the initial monsters
@@ -211,7 +222,7 @@ public final class LvGameController extends GameController {
             case "R" : acted = recall(slot); break;
             case "O" : acted = clearObstacle(hero); break;
             case "B" : market(hero); acted = false; break; // non-turn consuming
-            case "X" : acted = true; break; // skip/give up turn
+            case "X" : say(who(hero) + " passed"); acted = true; break; // skip/give up turn
             default :
                 printError(command + "is an unknown command. Type H for help.");
                 acted = false;
@@ -247,6 +258,9 @@ public final class LvGameController extends GameController {
             printError("You cannot move there: edge, wall, obstacle, another hero, or a monster you must defeat first.");
             return false;
         }
+        Position now = world.getPosition(hero);
+        statistics.valorMove(session.getRound(), who(hero), at(now) + " " + world.getTile(now));
+        System.out.println(who(hero) + " moved to " + at(now) + " (" + world.getTile(now) + ").");
         return true;
     }
 
@@ -261,7 +275,11 @@ public final class LvGameController extends GameController {
         Monster target = choose("Target", targets, this::describeMonster);
         if(target == null)
             return false;
-        logs(combat.attack(hero, target)); // attack the target monster and add it to the logs to be printed
+
+        // attack the target monster and add it to the logs to be printed
+        List<String> log = combat.attack(hero, target);
+        logs(log);
+        record("Attack", log); // record it for the log history
         resolveKill(target); // check and handle if the monster fainted
         return true;
     }
@@ -281,8 +299,11 @@ public final class LvGameController extends GameController {
         Monster target = choose("Target", targets, this::describeMonster);
         if(target == null)
             return false;
+
         // cast the spell and add the outcome to the logs to be printed
-        logs(combat.cast(hero, spell, target));
+        List<String> log = combat.cast(hero, spell, target);
+        logs(log);
+        record("Spell", log); // record it for the log history
         resolveKill(target); // check and handle if the monster fainted
         return true;
     }
@@ -292,10 +313,16 @@ public final class LvGameController extends GameController {
         ItemInstance potion = choose("Potion", items(hero, "potions"));
         if(potion == null)
             return false;
+
         // apply the potion effects to the hero
         // they last for duration = POTION_ROUNDS
         // add the result to the logs to be printed
-        logs(combat.potion(hero, potion, POTION_ROUNDS));
+
+        long beforeHp = hero.getHp(), beforeMp = hero.getMp();
+        List<String> log = combat.potion(hero, potion, POTION_ROUNDS);
+        statistics.potion(hero, beforeHp, beforeMp);
+        logs(log);
+        record("Potion", log);
         return true;
     }
 
@@ -320,13 +347,19 @@ public final class LvGameController extends GameController {
         }
         if(mode.equals("0"))
             return false;
+
+        List<String> log;
         if(mode.equals("U")) { // unequip item
-            if(!hero.getEquipment().isEquipped(item))
+            if(!hero.getEquipment().isEquipped(item)) {
                 throw new IllegalArgumentException("Item is not equipped");
-            logs(combat.unequip(hero, item));
+            }
+            log = combat.unequip(hero, item);
         }
-        else // equip item
-            logs(combat.equip(hero, item, mode));
+        else { // equip item
+            log = combat.equip(hero, item, mode);
+        }
+        logs(log);
+        record("Equipment", log);
         return true;
     }
 
@@ -353,6 +386,7 @@ public final class LvGameController extends GameController {
             printError("Teleport failed.");
             return false;
         }
+        say(who(hero) + " teleported next to " + world.getLabel(mate) + " at " + at(target));
         return true;
     }
 
@@ -363,6 +397,7 @@ public final class LvGameController extends GameController {
             printError("Recall failed: already at home, or the home space is occupied by another hero.");
             return false;
         }
+        say(who(slot.getHero()) + " recalled to " + at(slot.getHome()));
         return true;
     }
 
@@ -383,6 +418,7 @@ public final class LvGameController extends GameController {
             return false;
         }
         System.out.println("The obstacle at " + at(target) + " is now a plain space.");
+        record(who(hero) + " removed the obstacle at " + at(target));
         return true;
     }
 
@@ -454,18 +490,23 @@ public final class LvGameController extends GameController {
             List<Hero> targets = world.getAttackableHeroes(monster);
             if(!targets.isEmpty()) {
                 Hero target = targets.get(0); // In-range heroes are sorted by current HP.
+
                 System.out.println(world.getLabel(monster) + " attacks " + target.getName() + ":");
-                logs(combat.monsterAttack(monster, target));
+                List<String> log = combat.monsterAttack(monster, target);
+                logs(log);
+                record("Monster attack", log);
+
                 if(!target.isAlive()) { // handle hero fainting
+                    record(who(target) + " fainted!");
                     world.removeHero(target);
                     session.scheduleRespawn(target); // they're added to a respawn queue
-                    printError(target.getName() + " has fallen and will respawn next round.");
+                    printError(target.getName() + " has fainted and will respawn next round.");
                 }
             }
             else if(world.advanceMonster(monster)) // no hero in attack range, monster will try to move forward
-                System.out.println(world.getLabel(monster) + " advances to " + at(world.getPosition(monster)) + ".");
+                say(world.getLabel(monster) + " advances to " + at(world.getPosition(monster)) + ".");
             else // no valid moves, the monster will wait until it can advance forward or attack a hero
-                System.out.println(world.getLabel(monster) + " is blocked and waits.");
+                say(world.getLabel(monster) + " is blocked and waits.");
             if(checkNexus()) // handle a victory either monster or hero reached a nexus
                 return;
         }
@@ -493,7 +534,9 @@ public final class LvGameController extends GameController {
             if(world.respawnHero(hero, slot.getHome())) {
                 hero.respawn();
                 session.completeRespawn(hero);
+
                 printSuccess(hero.getName() + " respawns at " + at(slot.getHome()) + ".");
+                record(who(hero) + " respawned at " + at(slot.getHome()));
             }
             else
                 printError(hero.getName() + " cannot respawn yet: the home space is occupied.");
@@ -515,6 +558,8 @@ public final class LvGameController extends GameController {
             placeMonster(wave.get(lane), lane); // try to place a monster in each lane
 
         wavesSpawned++;
+        record("Wave " + wavesSpawned + " spawned | " + wave);
+
         // market refreshes its supply every RESTOCK_EVERY_WAVES
         // market stock is scaled to the highest level hero
         if(wavesSpawned % RESTOCK_EVERY_WAVES == 0 && market != null)
@@ -547,11 +592,14 @@ public final class LvGameController extends GameController {
         if(monster.isAlive()) // monster is still alive nothing to do
             return;
         printSuccess(world.getLabel(monster) + " " + monster.getName() + " is defeated!");
+        record(world.getLabel(monster) + " " + monster.getName() + " defeated");
+
         long gold = monster.getGold(); // gold and xp associated with defeating this monster
         long exp = monster.getExp();
         for(Hero hero : session.getLivingHeroes()) { // rewarded exactly once, living heroes only
             hero.credit(gold);
             hero.gainExperience(exp);
+            statistics.reward(hero, gold, exp);
         }
         System.out.println("Each surviving hero gains " + gold + " gold and " + exp + " EXP.");
         world.removeMonster(monster);
@@ -572,9 +620,9 @@ public final class LvGameController extends GameController {
     @Override
     protected boolean handleCommand(String value) {
         String command = value.toUpperCase();
-        if(command.equals("Q")) { // akss to quit the game
+        if(command.equals("Q")) { // asks to quit the game
             while(true) {
-                String confirm = readLine("Quit this game? Progress is not saved. Y yes, N/0 cancel > ").toUpperCase();
+                String confirm = readLine("Quit this game? Progress is not saved; statistics/history will be exported. Y yes, N/0 cancel > ").toUpperCase();
                 if(confirm.equals("Y") || confirm.equals("Q"))
                     throw new QuitGameException(); // run() will catch this so the player can return to the game selector menu
                 if(confirm.equals("N") || confirm.equals("0"))
@@ -668,6 +716,32 @@ public final class LvGameController extends GameController {
         }
     }
 
+    // helpers for generating game logs of legends of valor
+
+    // records a line in the session history
+    private void record(String event) {
+        if(statistics != null) {
+            statistics.valorEvent(session.getRound(), event);
+        }
+    }
+
+    private void record(String kind, List<String> lines) {
+        if(statistics != null) {
+            statistics.valorAction(session.getRound(), kind, lines);
+        }
+    }
+
+    // returns the hero label and name
+    private String who(Hero hero) {
+        return world.getLabel(hero) + " " + hero.getName();
+    }
+
+    // prints a line and records it in the session history
+    private void say(String line) {
+        System.out.println(line);
+        record(line);
+    }
+
     // helper which returns the hero's inventory items in the respective category
     private List<ItemInstance> items(Hero hero, String category) {
         List<ItemInstance> list = new ArrayList<>();
@@ -700,7 +774,7 @@ public final class LvGameController extends GameController {
         }
     }
 
-    /** Prints the statistics summary and saves the report to logs/. Safe to call more than once. */
+    // Prints the statistics summary and saves the report to logs
     private void finishSession() {
         if(statistics == null)
             return;

@@ -1,0 +1,76 @@
+Seed: 385677385697541
+Session statistics
+Steps: 19 | Encounters: 0
+Battles: 0 won, 0 lost, 0 unfinished
+Actions: Attack=2  Skill=0  Spell=1  Potion=0  Equipment=1  
+Trading: Bought 2 / 610 gold | Sold 0 / 0 gold | Repairs 0 / 0 gold
+Hero combat (potion recovery excludes round recovery, leveling and revival)
+Hero                     Damage dealt Damage taken  Potion HP  Potion MP
+Gaerdal_Ironhand                  150           14          0          0
+Muamman_Duathall                  100            0          0          0
+Sehanine_Moonbow                   95            0          0          0
+Hero growth (reward gold excludes starting gold and sales)
+Gaerdal_Ironhand | Level: 2 (+1) | EXP: 18 | EXP gained: 11 | Reward gold: 161 | Gold held: 905
+Muamman_Duathall | Level: 2 (+1) | EXP: 17 | EXP gained: 11 | Reward gold: 161 | Gold held: 2707
+Sehanine_Moonbow | Level: 2 (+1) | EXP: 18 | EXP gained: 11 | Reward gold: 161 | Gold held: 2661
+
+Action history
+Valor | Round 1 | H1 Gaerdal_Ironhand starts in lane 2
+Valor | Round 1 | H2 Muamman_Duathall starts in lane 1
+Valor | Round 1 | H3 Sehanine_Moonbow starts in lane 3
+Valor | Round 1 | Wave 1 spawned | [Andrealphus Lv1 HP 100/100, Cyrrollalee Lv1 HP 150/150, Casper Lv1 HP 95/95]
+Valor | Round 1 | H1 Gaerdal_Ironhand removed the obstacle at row 6, col 3
+Valor | Round 1 | Move 1 | H2 Muamman_Duathall | row 6, col 0 PLAIN
+Valor | Round 1 | Move 2 | H3 Sehanine_Moonbow | row 6, col 6 CAVE
+Valor | Round 1 | M1 advances to row 1, col 1.
+Valor | Round 1 | M2 advances to row 1, col 4.
+Valor | Round 1 | M3 advances to row 1, col 7.
+Market | Gaerdal_Ironhand | Buy Breath_of_Fire | 350 gold
+Market | Gaerdal_Ironhand | Buy HEAVY Armor | 260 gold
+Valor | Round 2 | Equipment | Gaerdal_Ironhand equipped HEAVY Armor (OFF)
+Valor | Round 2 | Move 3 | H2 Muamman_Duathall | row 5, col 0 KOULOU
+Valor | Round 2 | Move 4 | H3 Sehanine_Moonbow | row 5, col 6 KOULOU
+Valor | Round 2 | M1 advances to row 2, col 1.
+Valor | Round 2 | M2 advances to row 2, col 4.
+Valor | Round 2 | M3 advances to row 2, col 7.
+Valor | Round 3 | Move 5 | H1 Gaerdal_Ironhand | row 6, col 3 PLAIN
+Valor | Round 3 | Move 6 | H2 Muamman_Duathall | row 4, col 0 BUSH
+Valor | Round 3 | Move 7 | H3 Sehanine_Moonbow | row 4, col 6 BUSH
+Valor | Round 3 | M1 advances to row 3, col 1.
+Valor | Round 3 | M2 advances to row 3, col 4.
+Valor | Round 3 | M3 advances to row 2, col 6.
+Valor | Round 4 | Move 8 | H1 Gaerdal_Ironhand | row 6, col 4 PLAIN
+Valor | Round 4 | Attack | Hero attack: Muamman_Duathall -> Andrealphus: 100 damage | HP 100 -> 0/100; defeated
+Valor | Round 4 | M1 Andrealphus defeated
+Reward | Gaerdal_Ironhand | Gold +53 | EXP +4
+Reward | Muamman_Duathall | Gold +53 | EXP +4
+Reward | Sehanine_Moonbow | Gold +53 | EXP +4
+Valor | Round 4 | Move 9 | H3 Sehanine_Moonbow | row 4, col 7 CAVE
+Valor | Round 4 | M2 advances to row 4, col 4.
+Valor | Round 4 | M3 advances to row 3, col 6.
+Valor | Round 5 | Move 10 | H1 Gaerdal_Ironhand | row 5, col 4 KOULOU
+Valor | Round 5 | Move 11 | H2 Muamman_Duathall | row 3, col 0 PLAIN
+Valor | Round 5 | Attack | Hero attack: Sehanine_Moonbow -> Casper: 95 damage | HP 95 -> 0/95; defeated
+Valor | Round 5 | M3 Casper defeated
+Reward | Gaerdal_Ironhand | Gold +50 | EXP +4
+Reward | Muamman_Duathall | Gold +50 | EXP +4
+Reward | Sehanine_Moonbow | Gold +50 | EXP +4
+Valor | Round 5 | Monster attack | Enemy attack: Cyrrollalee -> Gaerdal_Ironhand: 14 damage | HP 220 -> 206/220
+Valor | Round 6 | Spell | Gaerdal_Ironhand casts Breath_of_Fire on Cyrrollalee (100 MP)
+Valor | Round 6 | Spell | Hero attack: Gaerdal_Ironhand -> Cyrrollalee: 150 damage | HP 150 -> 0/150; defeated
+Valor | Round 6 | M2 Cyrrollalee defeated
+Reward | Gaerdal_Ironhand | Gold +58 | EXP +3
+Reward | Muamman_Duathall | Gold +58 | EXP +3
+Reward | Sehanine_Moonbow | Gold +58 | EXP +3
+Valor | Round 6 | H2 Muamman_Duathall removed the obstacle at row 2, col 0
+Valor | Round 6 | H3 Sehanine_Moonbow removed the obstacle at row 3, col 7
+Valor | Round 7 | Move 12 | H1 Gaerdal_Ironhand | row 4, col 4 KOULOU
+Valor | Round 7 | Move 13 | H2 Muamman_Duathall | row 2, col 0 PLAIN
+Valor | Round 7 | Move 14 | H3 Sehanine_Moonbow | row 3, col 7 PLAIN
+Valor | Round 8 | Move 15 | H1 Gaerdal_Ironhand | row 3, col 4 CAVE
+Valor | Round 8 | Move 16 | H2 Muamman_Duathall | row 1, col 0 CAVE
+Valor | Round 8 | Move 17 | H3 Sehanine_Moonbow | row 2, col 7 CAVE
+Valor | Round 9 | Wave 2 spawned | [Stone Guardian Lv2 HP 270/270, Cyrrollalee Lv2 HP 236/236, Goblin Scout Lv2 HP 150/150]
+Valor | Round 9 | Move 18 | H1 Gaerdal_Ironhand | row 2, col 4 BUSH
+Valor | Round 9 | Move 19 | H2 Muamman_Duathall | row 0, col 0 NEXUS
+Valor | Round 9 | Victory :D! Your heroes reached the monsters' Nexus.

@@ -1,0 +1,73 @@
+Seed: 385087050769083
+Session statistics
+Steps: 15 | Encounters: 0
+Battles: 0 won, 0 lost, 0 unfinished
+Actions: Attack=2  Skill=0  Spell=0  Potion=0  Equipment=0  
+Trading: Bought 0 / 0 gold | Sold 0 / 0 gold | Repairs 0 / 0 gold
+Hero combat (potion recovery excludes round recovery, leveling and revival)
+Hero                     Damage dealt Damage taken  Potion HP  Potion MP
+Gaerdal_Ironhand                    0            0          0          0
+Segojan_Earthcaller               100           23          0          0
+Skoraeus_Stonebones                90           15          0          0
+Hero growth (reward gold excludes starting gold and sales)
+Gaerdal_Ironhand | Level: 2 (+1) | EXP: 13 | EXP gained: 6 | Reward gold: 88 | Gold held: 1442
+Segojan_Earthcaller | Level: 2 (+1) | EXP: 11 | EXP gained: 6 | Reward gold: 88 | Gold held: 2588
+Skoraeus_Stonebones | Level: 2 (+1) | EXP: 10 | EXP gained: 6 | Reward gold: 88 | Gold held: 2588
+
+Action history
+Valor | Round 1 | H1 Gaerdal_Ironhand starts in lane 1
+Valor | Round 1 | H2 Segojan_Earthcaller starts in lane 2
+Valor | Round 1 | H3 Skoraeus_Stonebones starts in lane 3
+Valor | Round 1 | Wave 1 spawned | [Casper Lv1 HP 95/95, Andrealphus Lv1 HP 100/100, Goblin Scout Lv1 HP 90/90]
+Valor | Round 1 | Move 1 | H1 Gaerdal_Ironhand | row 6, col 0 KOULOU
+Valor | Round 1 | Move 2 | H2 Segojan_Earthcaller | row 6, col 3 PLAIN
+Valor | Round 1 | H3 Skoraeus_Stonebones teleported next to H2 at row 7, col 3
+Valor | Round 1 | M1 advances to row 1, col 1.
+Valor | Round 1 | M2 advances to row 1, col 4.
+Valor | Round 1 | M3 advances to row 1, col 7.
+Valor | Round 2 | Move 3 | H1 Gaerdal_Ironhand | row 5, col 0 KOULOU
+Valor | Round 2 | Move 4 | H2 Segojan_Earthcaller | row 5, col 3 CAVE
+Valor | Round 2 | Move 5 | H3 Skoraeus_Stonebones | row 6, col 3 PLAIN
+Valor | Round 2 | M1 is blocked and waits.
+Valor | Round 2 | M2 advances to row 2, col 4.
+Valor | Round 2 | M3 advances to row 2, col 7.
+Valor | Round 3 | H1 Gaerdal_Ironhand removed the obstacle at row 4, col 0
+Valor | Round 3 | Move 6 | H2 Segojan_Earthcaller | row 4, col 3 BUSH
+Valor | Round 3 | Move 7 | H3 Skoraeus_Stonebones | row 5, col 3 CAVE
+Valor | Round 3 | M1 is blocked and waits.
+Valor | Round 3 | M2 advances to row 3, col 4.
+Valor | Round 3 | M3 advances to row 3, col 7.
+Valor | Round 4 | Move 8 | H1 Gaerdal_Ironhand | row 4, col 0 PLAIN
+Valor | Round 4 | Move 9 | H2 Segojan_Earthcaller | row 3, col 3 PLAIN
+Valor | Round 4 | Move 10 | H3 Skoraeus_Stonebones | row 4, col 3 BUSH
+Valor | Round 4 | M1 is blocked and waits.
+Valor | Round 4 | Monster attack | Enemy attack: Andrealphus -> Segojan_Earthcaller: 23 damage | HP 85 -> 62/85
+Valor | Round 4 | M3 advances to row 4, col 7.
+Valor | Round 5 | Move 11 | H1 Gaerdal_Ironhand | row 3, col 0 BUSH
+Valor | Round 5 | Attack | Hero attack: Segojan_Earthcaller -> Andrealphus: 100 damage | HP 100 -> 0/100; defeated
+Valor | Round 5 | M2 Andrealphus defeated
+Reward | Gaerdal_Ironhand | Gold +53 | EXP +4
+Reward | Segojan_Earthcaller | Gold +53 | EXP +4
+Reward | Skoraeus_Stonebones | Gold +53 | EXP +4
+Valor | Round 5 | H3 Skoraeus_Stonebones recalled to row 7, col 6
+Valor | Round 5 | M1 is blocked and waits.
+Valor | Round 5 | M3 advances to row 5, col 7.
+Valor | Round 6 | Move 12 | H1 Gaerdal_Ironhand | row 3, col 1 CAVE
+Valor | Round 6 | H2 Segojan_Earthcaller teleported next to H3 at row 7, col 7
+Valor | Round 6 | Move 13 | H3 Skoraeus_Stonebones | row 6, col 6 PLAIN
+Valor | Round 6 | M1 is blocked and waits.
+Valor | Round 6 | Monster attack | Enemy attack: Goblin Scout -> Skoraeus_Stonebones: 15 damage | HP 125 -> 110/125
+Valor | Round 7 | H1 Gaerdal_Ironhand removed the obstacle at row 2, col 1
+Valor | Round 7 | H2 Segojan_Earthcaller passed
+Valor | Round 7 | Attack | Hero attack: Skoraeus_Stonebones -> Goblin Scout: 90 damage | HP 90 -> 0/90; defeated
+Valor | Round 7 | M3 Goblin Scout defeated
+Reward | Gaerdal_Ironhand | Gold +35 | EXP +2
+Reward | Segojan_Earthcaller | Gold +35 | EXP +2
+Reward | Skoraeus_Stonebones | Gold +35 | EXP +2
+Valor | Round 7 | M1 advances to row 2, col 1.
+Valor | Round 8 | H1 Gaerdal_Ironhand recalled to row 7, col 0
+Valor | Round 8 | H2 Segojan_Earthcaller recalled to row 7, col 3
+Valor | Round 8 | Move 14 | H3 Skoraeus_Stonebones | row 5, col 6 BUSH
+Valor | Round 8 | M1 advances to row 3, col 1.
+Valor | Round 9 | Wave 2 spawned | [Cyrrollalee Lv2 HP 236/236, Stone Guardian Lv2 HP 270/270, Goblin Scout Lv2 HP 150/150]
+Valor | Round 9 | Move 15 | H1 Gaerdal_Ironhand | row 6, col 0 KOULOU

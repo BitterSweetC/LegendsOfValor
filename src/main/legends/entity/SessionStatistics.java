@@ -83,6 +83,21 @@ public final class SessionStatistics {
         record("Explore | " + kind + " | " + result);
     }
 
+    public void valorMove(int round, String unit, String where) {
+        steps++;
+        record("Valor | Round " + round + " | Move " + steps + " | " + unit + " | " + where);
+    }
+
+    public void valorAction(int round, String kind, List<String> results) {
+        actions.merge(kind, 1L, Long::sum);
+        for(String result : results)
+            record("Valor | Round " + round + " | " + kind + " | " + result);
+    }
+
+    public void valorEvent(int round, String event) {
+        record("Valor | Round " + round + " | " + event);
+    }
+
     public void reward(Hero hero, long gold, long experience) {
         heroes.get(hero).rewardGold += gold;
         record("Reward | " + hero.getName() + " | Gold +" + gold + " | EXP +" + experience);
