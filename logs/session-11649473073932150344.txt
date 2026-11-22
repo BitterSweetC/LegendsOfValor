@@ -1,0 +1,68 @@
+Seed: 391893109253916
+Session statistics
+Steps: 12 | Encounters: 0
+Battles: 0 won, 0 lost, 0 unfinished
+Actions: Attack=3  Skill=0  Spell=0  Potion=0  Equipment=0  
+Trading: Bought 0 / 0 gold | Sold 0 / 0 gold | Repairs 0 / 0 gold
+Hero combat (potion recovery excludes round recovery, leveling and revival)
+Hero                     Damage dealt Damage taken  Potion HP  Potion MP
+Gaerdal_Ironhand                  265            0          0          0
+Segojan_Earthcaller               175            0          0          0
+Skoraeus_Stonebones                 0            0          0          0
+Hero growth (reward gold excludes starting gold and sales)
+Gaerdal_Ironhand | Level: 2 (+1) | EXP: 17 | EXP gained: 10 | Reward gold: 175 | Gold held: 1529
+Segojan_Earthcaller | Level: 2 (+1) | EXP: 15 | EXP gained: 10 | Reward gold: 175 | Gold held: 2675
+Skoraeus_Stonebones | Level: 2 (+1) | EXP: 14 | EXP gained: 10 | Reward gold: 175 | Gold held: 2675
+
+Action history
+Valor | Round 1 | Difficulty: Hard (new monsters every 3 rounds)
+Valor | Round 1 | H1 Gaerdal_Ironhand starts in lane 1
+Valor | Round 1 | H2 Segojan_Earthcaller starts in lane 2
+Valor | Round 1 | H3 Skoraeus_Stonebones starts in lane 3
+Valor | Round 1 | Wave 1 spawned | [Stone Guardian Lv1 HP 175/175, Stone Guardian Lv1 HP 175/175, Cyrrollalee Lv1 HP 150/150]
+Valor | Round 1 | Move 1 | H1 Gaerdal_Ironhand | row 6, col 0 BUSH
+Valor | Round 1 | Move 2 | H2 Segojan_Earthcaller | row 6, col 3 PLAIN
+Valor | Round 1 | Move 3 | H3 Skoraeus_Stonebones | row 6, col 6 CAVE
+Valor | Round 1 | M1 advances to row 1, col 1.
+Valor | Round 1 | M2 advances to row 1, col 4.
+Valor | Round 1 | M3 advances to row 1, col 7.
+Valor | Round 2 | Move 4 | H1 Gaerdal_Ironhand | row 5, col 0 CAVE
+Valor | Round 2 | Move 5 | H2 Segojan_Earthcaller | row 5, col 3 CAVE
+Valor | Round 2 | Move 6 | H3 Skoraeus_Stonebones | row 5, col 6 PLAIN
+Valor | Round 2 | M1 advances to row 2, col 1.
+Valor | Round 2 | M2 advances to row 2, col 4.
+Valor | Round 2 | M3 advances to row 2, col 7.
+Valor | Round 3 | Move 7 | H1 Gaerdal_Ironhand | row 4, col 0 KOULOU
+Valor | Round 3 | Move 8 | H2 Segojan_Earthcaller | row 4, col 3 BUSH
+Valor | Round 3 | Move 9 | H3 Skoraeus_Stonebones | row 4, col 6 PLAIN
+Valor | Round 3 | M1 advances to row 3, col 1.
+Valor | Round 3 | M2 advances to row 3, col 4.
+Valor | Round 3 | M3 is blocked and waits.
+Valor | Round 4 | Wave 2 spawned | [Goblin Scout Lv1 HP 90/90, Natsunomeryu Lv1 HP 155/155, Desghidorrah Lv1 HP 160/160]
+Valor | Round 4 | Attack | Hero attack: Gaerdal_Ironhand -> Stone Guardian: 175 damage | HP 175 -> 0/175; defeated
+Valor | Round 4 | M1 Stone Guardian defeated
+Reward | Gaerdal_Ironhand | Gold +70 | EXP +4
+Reward | Segojan_Earthcaller | Gold +70 | EXP +4
+Reward | Skoraeus_Stonebones | Gold +70 | EXP +4
+Valor | Round 4 | Attack | Hero attack: Segojan_Earthcaller -> Stone Guardian: 175 damage | HP 175 -> 0/175; defeated
+Valor | Round 4 | M2 Stone Guardian defeated
+Reward | Gaerdal_Ironhand | Gold +70 | EXP +4
+Reward | Segojan_Earthcaller | Gold +70 | EXP +4
+Reward | Skoraeus_Stonebones | Gold +70 | EXP +4
+Valor | Round 4 | Move 10 | H3 Skoraeus_Stonebones | row 4, col 7 KOULOU
+Valor | Round 4 | M3 is blocked and waits.
+Valor | Round 4 | M4 advances to row 1, col 1.
+Valor | Round 4 | M5 advances to row 1, col 4.
+Valor | Round 4 | M6 advances to row 1, col 7.
+Valor | Round 5 | Move 11 | H1 Gaerdal_Ironhand | row 3, col 0 BUSH
+Valor | Round 5 | H2 Segojan_Earthcaller removed the obstacle at row 3, col 3
+Valor | Round 5 | Move 12 | H3 Skoraeus_Stonebones | row 4, col 6 PLAIN
+Valor | Round 5 | M3 is blocked and waits.
+Valor | Round 5 | M4 advances to row 2, col 1.
+Valor | Round 5 | M5 advances to row 2, col 4.
+Valor | Round 5 | M6 is blocked and waits.
+Valor | Round 6 | Attack | Hero attack: Gaerdal_Ironhand -> Goblin Scout: 90 damage | HP 90 -> 0/90; defeated
+Valor | Round 6 | M4 Goblin Scout defeated
+Reward | Gaerdal_Ironhand | Gold +35 | EXP +2
+Reward | Segojan_Earthcaller | Gold +35 | EXP +2
+Reward | Skoraeus_Stonebones | Gold +35 | EXP +2

@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9597dbf4-25ed-40a2-b99e-4c17867b1722" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/legends/enums/LvDifficulty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/LvGameController$QueuedSpawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/LvGameController$QueuedSpawn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/LvGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/controller/LvGameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/SessionStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/SessionStatistics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeroes/legends/entity/ValorWorld.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/legends/controller/LvGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/controller/LvGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/legends/entity/SessionStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/legends/entity/SessionStatistics.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +19,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -41,61 +37,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000420947546944" />
-      <entry key="S2" value="1.0805484144143838" />
-      <entry key="S5" value="1.3651475050261959" />
-      <entry key="S10" value="1.6104303003616074" />
-      <entry key="S30" value="2.0290056864952586" />
-      <entry key="S60" value="2.351296457303279" />
-      <entry key="M2" value="2.72854628224637" />
-      <entry key="M5" value="3.793149033731681" />
-      <entry key="M10" value="4.875204931104758" />
-      <entry key="M15" value="5.429526799942715" />
-      <entry key="M30" value="6.125652926782072" />
-      <entry key="H1" value="6.618245985080123" />
-      <entry key="H2" value="7.880555351559505" />
-      <entry key="H4" value="12.571592504116534" />
-      <entry key="D1" value="144.06152178564128" />
-      <entry key="W1" value="355.8710798404805" />
+      <entry key="MS100" value="1.6854538660309285E-12" />
+      <entry key="MS500" value="0.004431235493917891" />
+      <entry key="S2" value="0.31673533153761946" />
+      <entry key="S5" value="0.9060689129591134" />
+      <entry key="S10" value="1.3795312228991448" />
+      <entry key="S30" value="2.1084868618206642" />
+      <entry key="S60" value="2.4714923845076493" />
+      <entry key="M2" value="2.709858248241217" />
+      <entry key="M5" value="2.9189083000714526" />
+      <entry key="M10" value="4.918463761771375" />
+      <entry key="M15" value="10.206040108744975" />
+      <entry key="M30" value="31.9202471923878" />
+      <entry key="H1" value="69.96554452085208" />
+      <entry key="H2" value="114.12873974672651" />
+      <entry key="H4" value="152.83452204639724" />
+      <entry key="D1" value="317.2387390092177" />
+      <entry key="W1" value="543.6658678461399" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="2.808665332041122E-92" />
-      <entry key="S5" value="2.3955210832254377E-37" />
-      <entry key="S10" value="4.894406075537088E-19" />
-      <entry key="S30" value="7.880733951419341E-7" />
-      <entry key="S60" value="8.877353322129372E-4" />
-      <entry key="M2" value="0.029813642719604235" />
-      <entry key="M5" value="0.2581387128174241" />
-      <entry key="M10" value="0.6086642770896507" />
-      <entry key="M15" value="0.8602654276877865" />
-      <entry key="M30" value="1.275224138463061" />
-      <entry key="H1" value="1.5852156661178367" />
-      <entry key="H2" value="1.7782105110298687" />
-      <entry key="H4" value="1.9891477674804054" />
-      <entry key="D1" value="13.332157527353372" />
-      <entry key="W1" value="38.54377578802953" />
+      <entry key="MS100" value="1.0007452960041479" />
+      <entry key="MS500" value="1.2718102417617922" />
+      <entry key="S2" value="2.204572828467408" />
+      <entry key="S5" value="3.116882921185152" />
+      <entry key="S10" value="3.811271733831993" />
+      <entry key="S30" value="4.527632914145702" />
+      <entry key="S60" value="4.752545227058251" />
+      <entry key="M2" value="4.873302748708589" />
+      <entry key="M5" value="4.9555461263119" />
+      <entry key="M10" value="5.237846277763517" />
+      <entry key="M15" value="5.869107253861732" />
+      <entry key="M30" value="8.000514572492271" />
+      <entry key="H1" value="10.706360185617127" />
+      <entry key="H2" value="13.097592083950419" />
+      <entry key="H4" value="14.853346455939878" />
+      <entry key="D1" value="27.106183578120035" />
+      <entry key="W1" value="53.09120083506929" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="5.608878686508959E-4" />
-      <entry key="MS500" value="0.22376568669719463" />
-      <entry key="S2" value="0.7431697652763799" />
-      <entry key="S5" value="1.1753238509253012" />
-      <entry key="S10" value="1.4943803738032508" />
-      <entry key="S30" value="1.9800855766442587" />
-      <entry key="S60" value="2.32427060176618" />
-      <entry key="M2" value="2.7417363153203924" />
-      <entry key="M5" value="4.040187942153663" />
-      <entry key="M10" value="5.475763533013584" />
-      <entry key="M15" value="6.283441185815245" />
-      <entry key="M30" value="7.397059732341599" />
-      <entry key="H1" value="8.20134758972264" />
-      <entry key="H2" value="9.657648801729032" />
-      <entry key="H4" value="14.560612970285517" />
-      <entry key="D1" value="162.9273737671143" />
-      <entry key="W1" value="520.4200643339306" />
+      <entry key="MS100" value="0.004586894675725937" />
+      <entry key="MS500" value="0.4375452533979604" />
+      <entry key="S2" value="1.923841888020804" />
+      <entry key="S5" value="3.6287744871460017" />
+      <entry key="S10" value="4.939542489531168" />
+      <entry key="S30" value="6.53453013650494" />
+      <entry key="S60" value="7.170487007509094" />
+      <entry key="M2" value="7.555647993596717" />
+      <entry key="M5" value="7.863235605382598" />
+      <entry key="M10" value="10.150080082051899" />
+      <entry key="M15" value="16.069998911872393" />
+      <entry key="M30" value="39.91638297069971" />
+      <entry key="H1" value="80.66837808586973" />
+      <entry key="H2" value="127.22386939529375" />
+      <entry key="H4" value="167.68664556265077" />
+      <entry key="D1" value="349.47311749042245" />
+      <entry key="W1" value="721.4005121159371" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -117,7 +113,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "lv-difficulty-toggle",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
